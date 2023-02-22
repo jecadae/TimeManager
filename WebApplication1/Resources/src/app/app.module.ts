@@ -9,7 +9,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { Registration } from './components/registration/registration';
 import { CheckRegistrationService } from './components/registration/check-registration.service'
-import {RegService} from './components/registration/reg.service'
+import { RegService } from './components/registration/reg.service'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'; 
 
