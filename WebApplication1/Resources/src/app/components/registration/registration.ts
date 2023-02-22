@@ -12,12 +12,12 @@ import { Router } from '@angular/router'
 
 export class Registration implements OnInit {
 
-  surname: string;
-  name: string;
-  patronymic: string;
-  email: string;
-  password: string;
-  passwordRepead: string;
+  surname: string = '';
+  name: string = '';
+  patronymic: string = '';
+  email: string = '';
+  password: string = '';
+  passwordRepead: string = '';
 
   surnameErrTitle: string = ''
   nameErrTitle: string = ''

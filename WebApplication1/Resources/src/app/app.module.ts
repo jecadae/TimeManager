@@ -7,20 +7,31 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { Registration } from './components/registration/registration';
+import { CheckRegistrationService } from './components/registration/check-registration.service'
+import {RegService} from './components/registration/reg.service'
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    Registration
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [    
+    CheckRegistrationService,
+    RegService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
