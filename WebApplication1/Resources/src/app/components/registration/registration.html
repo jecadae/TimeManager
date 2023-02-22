@@ -1,0 +1,45 @@
+<div class="frame">
+    <label class="title">Регистрация</label>
+    <form (submit)="userRegistrationClick()">
+        <div>
+            <label class="name-input">Фамилия</label>
+            <input type="text" name="surname" [(ngModel)]="surname" class="input">
+            <label class="err-label">{{surnameErrTitle}}</label>
+        </div>
+
+        <div>
+            <label class="name-input">Имя</label>
+            <input type="text" name="name" [(ngModel)]="name" class="input">
+            <label class="err-label">{{nameErrTitle}}</label>
+        </div>
+
+        <div>
+            <label class="name-input">Отчество</label>
+            <input type="text" name="patronymic" [(ngModel)]="patronymic" class="input">
+            <label class="err-label">{{patronymicErrTitle}}</label>
+        </div>
+
+        <div>
+            <label class="name-input">Email</label>
+            <input type="email" name="email" [(ngModel)]="email" class="input">
+            <label class="err-label">{{emailErrTitle}}</label>
+        </div>
+
+        <div>
+            <label class="name-input">Пароль</label>
+            <input type="password" name="password" [(ngModel)]="password" class="input">
+            <label class="err-label">{{passwordErrTitle}}</label>
+        </div>
+
+        <div>
+            <label class="name-input">Повторите пароль</label>
+            <input type="password" name="passwordRepead" [(ngModel)]="passwordRepead" class="input" id="passwordInput">
+            <label class="err-label">{{passwordRepeadErrTitle}}</label>
+        </div>
+
+        <div class="padding">
+            <button class="bb" type="submit">Регистрация</button>
+        </div>
+    </form>
+    <button class="bb1">Войти</button>
+</div>
