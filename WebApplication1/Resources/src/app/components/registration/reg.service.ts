@@ -14,7 +14,6 @@ export class RegService {
     headers.append('Content-Type', 'application/json');
     return this.http.post(
       'МИРОСЛАВ, ДАЙ ССЫЛКУ!',
-      'Подпивасник, пора работать!',
       user,
       {headers: headers}).pipe(map((response:any) => response.json()));
   }
