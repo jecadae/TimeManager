@@ -1,22 +1,22 @@
 <div class="form">
     <div class="frame">
-        <div class="input-gap">
+        <form class="input-gap" (submit)="userLoginClick()">
             <div>
                 <label class="login">Авторизация</label>
                 <label class="name-input">Email</label>
-                <input type="email" name="email" class="input">
-                <label class="err-label"></label>
+                <input type="email" name="email" [(ngModel)]="email" class="input">
+                <label class="err-label">{{emailErrLabel}}</label>
             </div>
     
             <div>
                 <label class="name-input">Пароль</label>
-                <input type="password" name="password" class="input">
-                <label class="err-label"></label>
+                <input type="password" name="password" [(ngModel)]="password" class="input">
+                <label class="err-label">{{errLabel}}</label>
             </div>
         <section class="bb-frame">
             <button class="bb1" type="submit">Забыли пароль?</button>
             <button class="bb" type="submit">Войти</button>
           </section>
           <button class="bb2" type="submit">Зарегистрироваться</button>
-    </div>
+        </form>
 </div>

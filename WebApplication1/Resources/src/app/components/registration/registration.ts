@@ -1,6 +1,6 @@
 import { Component, OnInit,  NgModule } from '@angular/core';
 import {CheckRegistrationService} from './check-registration.service';
-import {RegService} from './reg.service';
+import {AuthService} from '../auth.service';
 import { Router } from '@angular/router'
 
 
@@ -29,7 +29,7 @@ export class Registration implements OnInit {
   constructor(
     private checkRegistration: CheckRegistrationService,
     private router: Router,
-    private reg: RegService
+    private auth: AuthService
     ) {}
 
   ngOnInit() {
@@ -96,7 +96,7 @@ export class Registration implements OnInit {
    
    if (errCount > 0) return false
    
-   this.reg.regUser(user)
+   this.auth.regUser(user)
 
    return
 

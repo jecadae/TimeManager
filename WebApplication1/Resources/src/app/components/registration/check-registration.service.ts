@@ -9,7 +9,7 @@ export class CheckRegistrationService {
 
   checkNullSurname(surname: string) {
 
-    if (surname == undefined) {
+    if (surname == '') {
       return false
     }
     else return true;
@@ -18,7 +18,7 @@ export class CheckRegistrationService {
 
   checkNullName(name: string) {
 
-    if (name == undefined) {
+    if (name == '') {
       return false
     }
     else return true;
@@ -27,7 +27,7 @@ export class CheckRegistrationService {
 
   checkNullPatronymic(patronymic: string) {
 
-    if (patronymic == undefined) {
+    if (patronymic == '') {
       return false
     }
     else return true;
@@ -36,7 +36,7 @@ export class CheckRegistrationService {
 
   checkNullEmail(email: string) {
 
-    if (email == undefined) {
+    if (email == '') {
       return false
     }
     else return true;
@@ -57,7 +57,7 @@ export class CheckRegistrationService {
 
   checkNullPassword(password: string) {
 
-    if (password == undefined) {
+    if (password == '') {
       return false
     }
     else return true;

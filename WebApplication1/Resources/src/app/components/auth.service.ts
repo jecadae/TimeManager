@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class RegService {
+export class AuthService {
 
   constructor(private http: HttpClient) {}
 
@@ -18,4 +18,12 @@ export class RegService {
       {headers: headers}).pipe(map((response:any) => response.json()));
   }
 
+  logUser(user: any) {
+    let headers = new HttpHeaders;
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(
+      'МИРОСЛАВ, ДАЙ ССЫЛКУ!',
+      user,
+      {headers: headers}).pipe(map((response:any) => response.json()));
+  }
 }
