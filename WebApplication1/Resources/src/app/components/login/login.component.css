@@ -81,13 +81,11 @@
 .err-label {
     width: 468px;
     height: 16px;
-
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-
     letter-spacing: 0.4px;
 
     color: #49454F;
@@ -142,7 +140,6 @@
 
 .bb1 {
     gap: 8px;
-
     width: 245px;
     height: 48px;
 
