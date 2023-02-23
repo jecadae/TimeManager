@@ -1,6 +1,6 @@
 import { Component, OnInit,  NgModule } from '@angular/core';
-import {CheckRegistrationService} from './check-registration.service';
-import {RegService} from './reg.service';
+import { CheckRegistrationService } from './check-registration.service';
+import { RegService } from './reg.service';
 import { Router } from '@angular/router'
 
 
@@ -38,7 +38,6 @@ export class Registration implements OnInit {
   chekPasswordLabel(event: any) {
 
   }
-
 
   userRegistrationClick() {
     const user = {
