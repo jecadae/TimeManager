@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit {
   errLabel: string = ''
   emailErrLabel: string = ''
 
-
-
   userLoginClick() {
     const user = {
       email: this.email,

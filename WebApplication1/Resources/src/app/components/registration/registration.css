@@ -75,18 +75,14 @@
 }
 
 .name-input {
-    width: 72px;
-    height: 16px;
-
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 16px;
+    display: flex;
 
-    letter-spacing: 0.4px;
     color: #49454F;
-    padding-left: 20px;
 }
 
 .err-label {

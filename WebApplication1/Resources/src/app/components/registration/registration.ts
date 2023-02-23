@@ -1,12 +1,7 @@
 import { Component, OnInit,  NgModule } from '@angular/core';
-<<<<<<< HEAD
-import {CheckRegistrationService} from './check-registration.service';
-import {AuthService} from '../auth.service';
-=======
 import { CheckRegistrationService } from './check-registration.service';
-import { RegService } from './reg.service';
->>>>>>> ed617fdb41f9afacbcbee56b593362923c4684d6
 import { Router } from '@angular/router'
+import { AuthService } from '../auth.service';
 
 
 @Component({
