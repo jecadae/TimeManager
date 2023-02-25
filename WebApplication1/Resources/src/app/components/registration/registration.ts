@@ -4,6 +4,7 @@ import {AuthService} from '../auth.service';
 import { Router } from '@angular/router'
 
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.html',
