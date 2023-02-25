@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./registration.css']
 })
 
-export class Registration implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   surname: string = '';
   name: string = '';
