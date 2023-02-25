@@ -32,12 +32,9 @@ import { FormsModule } from '@angular/forms';
 
   providers: [    
     CheckRegistrationService,
-<<<<<<< HEAD
-    AuthService],
-=======
-    RegService],
+    AuthService
+  ],
 
->>>>>>> ed617fdb41f9afacbcbee56b593362923c4684d6
   bootstrap: [AppComponent]
 })
 
