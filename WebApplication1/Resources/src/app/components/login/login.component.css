@@ -38,7 +38,6 @@
 .input {
     box-sizing: border-box;
 
-    /* Auto layout */
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -60,7 +59,6 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-
 
 }
 
