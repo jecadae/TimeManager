@@ -7,7 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { RegistrationComponent } from './components/registration/registration';
-import { CheckRegistrationService } from './components/registration/check-registration.service'
+import { CheckDataService } from './components/check-data.service'
 import { AuthService } from './components/auth.service'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'; 
@@ -31,7 +31,7 @@ import { FormsModule } from '@angular/forms';
   ],
 
   providers: [    
-    CheckRegistrationService,
+    CheckDataService,
     AuthService],
 
   bootstrap: [AppComponent]

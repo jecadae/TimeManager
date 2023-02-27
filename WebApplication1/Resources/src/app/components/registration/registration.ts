@@ -1,5 +1,5 @@
 import { Component, OnInit,  NgModule } from '@angular/core';
-import {CheckRegistrationService} from './check-registration.service';
+import { CheckDataService } from '../check-data.service';
 import {AuthService} from '../auth.service';
 import { Router } from '@angular/router'
 
@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
   passwordRepeadErrTitle: string = ''
 
   constructor(
-    private checkRegistration: CheckRegistrationService,
+    private checkRegistration: CheckDataService,
     private router: Router,
     private auth: AuthService
     ) {}

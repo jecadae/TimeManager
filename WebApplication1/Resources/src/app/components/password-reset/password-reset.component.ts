@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
-import {CheckRegistrationService} from '../registration/check-registration.service';
+import {CheckDataService} from '../check-data.service';
 
 @Component({
   selector: 'app-password-reset',
@@ -12,26 +12,29 @@ export class PasswordResetComponent {
   constructor(    
     private router: Router,
     private auth: AuthService,
-    private checkRegistration: CheckRegistrationService) { }
+    private checkRasswordReset: CheckDataService) { }
 
     email: string = '';
     emailErrLabel = ''
 
-  checkNullEmail() {
-    let errCount = 0;
+  passwordResetClick() {
 
 
     const user = {
       email: this.email
     }
 
-    if (!this.checkRegistration.checkNullEmail(user.email)) {
+    if (!this.checkRasswordReset.checkNullEmail(user.email)) {
       this.emailErrLabel = 'Email не введен'
-      errCount++;
-     } else if (!this.checkRegistration.checkEmail(user.email)) {
+      return false
+     } else if (!this.checkRasswordReset.checkEmail(user.email)) {
       this.emailErrLabel = 'Некорректный email'
-      errCount++;
+      return false
      }
+     else {}
+
+     return
+
 }
 }
 
