@@ -51,6 +51,9 @@ export class LoginComponent implements OnInit {
       if (!data.succes) {
         this.errLabel = 'Неверный email или пароль'
       }
+      else 
+      this.router.navigate(['']);
+      this.auth.platformUser(data.token, data.user)
     })
     return
 }
