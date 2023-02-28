@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
-import {CheckRegistrationService} from '../registration/check-registration.service';
+import {CheckDataService} from '../check-data.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private checkRegistration: CheckRegistrationService
+    private checkLogin: CheckDataService
   ) { }
 
   email: string = '';
@@ -34,14 +34,14 @@ export class LoginComponent implements OnInit {
     this.errLabel = '';
     this.emailErrLabel = '';
 
-    if (!this.checkRegistration.checkNullEmail(user.email)) {
+    if (!this.checkLogin.checkNullEmail(user.email)) {
       this.emailErrLabel = 'Email не введен'
       errCount++;
-     } else if (!this.checkRegistration.checkEmail(user.email)) {
+     } else if (!this.checkLogin.checkEmail(user.email)) {
       this.emailErrLabel = 'Некорректный email'
       errCount++;
      }
-    if (!this.checkRegistration.checkNullPassword(user.password)) {
+    if (!this.checkLogin.checkNullPassword(user.password)) {
       this.errLabel = 'Пароль не введен'
       errCount++; }
 
@@ -51,6 +51,9 @@ export class LoginComponent implements OnInit {
       if (!data.succes) {
         this.errLabel = 'Неверный email или пароль'
       }
+      else 
+      this.router.navigate(['']);
+      this.auth.platformUser(data.token, data.user)
     })
     return
 }

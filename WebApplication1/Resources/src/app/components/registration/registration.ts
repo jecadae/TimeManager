@@ -1,7 +1,8 @@
-import { Component, OnInit,  NgModule } from '@angular/core';
-import {CheckRegistrationService} from './check-registration.service';
-import {AuthService} from '../auth.service';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { CheckDataService } from '../check-data.service';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
+import { timeout } from 'rxjs';
 
 
 
@@ -28,14 +29,14 @@ export class RegistrationComponent implements OnInit {
   passwordRepeadErrTitle: string = ''
 
   constructor(
-    private checkRegistration: CheckRegistrationService,
+    private checkRegistration: CheckDataService,
     private router: Router,
     private auth: AuthService
-    ) {}
+  ) { }
 
   ngOnInit() {
   }
-  
+
   chekPasswordLabel(event: any) {
 
   }
@@ -51,56 +52,61 @@ export class RegistrationComponent implements OnInit {
 
     }
 
-  this.surnameErrTitle = ''
-  this.nameErrTitle = ''
-  this.patronymicErrTitle = ''
-  this.emailErrTitle = ''
-  this.passwordErrTitle = ''
-  this.passwordRepeadErrTitle = ''
+    this.surnameErrTitle = ''
+    this.nameErrTitle = ''
+    this.patronymicErrTitle = ''
+    this.emailErrTitle = ''
+    this.passwordErrTitle = ''
+    this.passwordRepeadErrTitle = ''
 
-  let errCount = 0;  
+    let errCount = 0;
 
-  if (!this.checkRegistration.checkNullSurname(user.surname)) {
-    this.surnameErrTitle = 'Фамилия не введена';
-    errCount++;
-   }
-   if (!this.checkRegistration.checkNullName(user.name)) {
-    this.nameErrTitle = 'Имя не введено'
-    errCount++;
-   }
-   if (!this.checkRegistration.checkNullPatronymic(user.patronymic)) {
-    this.patronymicErrTitle = 'Отчество не введено'
-    errCount++;
-   }
+    if (!this.checkRegistration.checkNullSurname(user.surname)) {
+      this.surnameErrTitle = 'Фамилия не введена';
+      errCount++;
+    }
+    if (!this.checkRegistration.checkNullName(user.name)) {
+      this.nameErrTitle = 'Имя не введено'
+      errCount++;
+    }
+    if (!this.checkRegistration.checkNullPatronymic(user.patronymic)) {
+      this.patronymicErrTitle = 'Отчество не введено'
+      errCount++;
+    }
 
-   if (!this.checkRegistration.checkNullEmail(user.email)) {
-    this.emailErrTitle = 'Email не введен'
-    errCount++;
-   } else if (!this.checkRegistration.checkEmail(user.email)) {
-    this.emailErrTitle = 'Некорректный email'
-    errCount++;
-   }
+    if (!this.checkRegistration.checkNullEmail(user.email)) {
+      this.emailErrTitle = 'Email не введен'
+      errCount++;
+    } else if (!this.checkRegistration.checkEmail(user.email)) {
+      this.emailErrTitle = 'Некорректный email'
+      errCount++;
+    }
 
-   if (!this.checkRegistration.checkNullPassword(user.password)) {
-    this.passwordErrTitle = 'Пароль не введен'
-    errCount++;
-   } else if (!this.checkRegistration.checkPasswordStrength(user.password)) {
-    this.passwordErrTitle = 'Необходимы строчные и заглавные латинские буквы, цифры. Длина или более'
-    errCount++;
-   }
+    if (!this.checkRegistration.checkNullPassword(user.password)) {
+      this.passwordErrTitle = 'Пароль не введен'
+      errCount++;
+    } else if (!this.checkRegistration.checkPasswordStrength(user.password)) {
+      this.passwordErrTitle = 'Необходимы строчные и заглавные латинские буквы, цифры. Длина или более'
+      errCount++;
+    }
 
-   if (!this.checkRegistration.checkPasswordRepead(user.password, user.passwordRepead)) {
-    this.passwordRepeadErrTitle = 'Пароли не совпадают'
-    errCount++
-   }
-   
-   if (errCount > 0) return false
-   
-   this.auth.regUser(user)
+    if (!this.checkRegistration.checkPasswordRepead(user.password, user.passwordRepead)) {
+      this.passwordRepeadErrTitle = 'Пароли не совпадают'
+      errCount++
+    }
 
-   return
+    if (errCount > 0) return false
 
+    this.auth.regUser(user).subscribe(data => {
+      if (!data.succes) { 
+        alert('Ошибка регистрации, поторите попытку позже')
+      }
+      else {
+        alert('Регистрация прошла успешно')
+        this.router.navigate(['/login']);
+      }
+    })
+    return
   }
-
-  }
+}
 

@@ -9,6 +9,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  token: any;
+  user: any;
+
   regUser(user: any) {
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
@@ -25,5 +28,21 @@ export class AuthService {
       'МИРОСЛАВ, ДАЙ ССЫЛКУ!',
       user,
       {headers: headers}).pipe(map((response:any) => response.json()));
+  }
+  
+  passwordReset(user: any) {
+    let headers = new HttpHeaders;
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(
+      'МИРОСЛАВ, ДАЙ ССЫЛКУ!',
+      user,
+      {headers: headers}).pipe(map((response:any) => response.json()));
+  }
+
+  platformUser(token: any, user: any) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.token = token;
+    this.user = user;
   }
 }
