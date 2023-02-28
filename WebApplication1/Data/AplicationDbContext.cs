@@ -4,9 +4,9 @@ using WebApplication1.Entity;
 
 namespace WebApplication1.Data;
 
-public class AplicationDbContext: IdentityDbContext<User>
+public class ApplicationDbContext: IdentityDbContext<User>
 {
-    public AplicationDbContext(DbContextOptions<AplicationDbContext> options): base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
     
     {
     }
