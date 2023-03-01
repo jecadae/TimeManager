@@ -45,10 +45,6 @@
 }
 
 .ng-button {
-  /* UI KIT */
-
-
-/* Auto layout */
 
 display: flex;
 flex-direction: column;
@@ -86,4 +82,16 @@ color: #FFFFFF;
 flex: none;
 order: 1;
 flex-grow: 0;
+}
+
+.myplan{
+  text-align: center;
+}
+
+.members{
+  text-align: center;
+}
+
+.profile{
+  text-align: center;
 }
