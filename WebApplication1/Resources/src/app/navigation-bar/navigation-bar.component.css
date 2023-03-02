@@ -80,3 +80,19 @@ flex-grow: 0;
 .profile{
   text-align: center;
 }
+
+.header{
+  font-family: 'Roboto';
+  font-style: bold;
+  font-size: 46px;
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
+.input{
+  font-family: 'Roboto';
+  font-size: 16px;
+  margin-left: 2%;
+  margin-top: 4%;
+  text-align: right;
+}

@@ -35,7 +35,12 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>myApp</span>
+      <span class="header">Сотрудники</span>
+      <mat-form-field class="input" appearance="fill">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput>
+        <mat-label>Имя сотрудника</mat-label>
+      </mat-form-field>
     </mat-toolbar>
     <!-- Add Content Here -->
   </mat-sidenav-content>
