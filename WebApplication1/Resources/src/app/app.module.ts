@@ -19,10 +19,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HomePageComponent } from './home-page/home-page.component'; 
+import { HomePageComponent } from './components/home-page/home-page.component'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 
 
 @NgModule({
