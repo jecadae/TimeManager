@@ -90,11 +90,11 @@ flex-grow: 0;
 }
 
 .input{
+  display: flex;
   font-family: 'Roboto';
   font-size: 16px;
   margin-left: 2%;
   margin-top: 4%;
-  text-align: right;
 }
 
 .search-name{
