@@ -1,11 +1,11 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { NewPasswordComponent } from './components/new-password/new-password.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component';
-import { RegistrationComponent } from './components/registration/registration';
-import { HomePageComponent } from './home-page/home-page.component';
+import { PasswordResetComponent } from './components/authentication/password-reset/password-reset.component';
+import { RegistrationComponent } from './components/authentication/registration/registration';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
