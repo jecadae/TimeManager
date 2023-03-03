@@ -11,4 +11,10 @@
 
 .modal-content {
     background-color: #fff;
+    margin: 100px auto;
+    padding: auto;
+    width: 50%;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
 }
