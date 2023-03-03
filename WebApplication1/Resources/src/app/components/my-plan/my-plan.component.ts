@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalWindowComponent } from 'src/app/modal-window/modal-window.component';
 
 @Component({
   selector: 'app-my-plan',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class MyPlanComponent {
 
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    this.dialog.open(ModalWindowComponent);
+  }
 
 
 }

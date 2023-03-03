@@ -23,6 +23,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MyPlanComponent } from './components/my-plan/my-plan.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -52,6 +54,7 @@ import { MyPlanComponent } from './components/my-plan/my-plan.component';
     MatListModule,
     MatFormFieldModule, 
     MatInputModule,
+    MatDialogModule
   ],
 
   providers: [    
