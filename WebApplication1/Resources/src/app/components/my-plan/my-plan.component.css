@@ -8,5 +8,13 @@
 }
 
 .plus{
-    margin-left: 10%;
+    font-family: 'Roboto';
+    font-size: 24px;
+}
+
+#add-button{
+    background-color: #D76B49;
+    right: 20px;
+    bottom: 15px; 
+    position: fixed;
 }
