@@ -23,6 +23,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
+import { MyPlanComponent } from './components/my-plan/my-plan.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
     NewPasswordComponent,
     NavigationBarComponent,
     HomePageComponent,
-    ModalWindowComponent
+    ModalWindowComponent,
+    MyPlanComponent
   ],
 
   imports: [
