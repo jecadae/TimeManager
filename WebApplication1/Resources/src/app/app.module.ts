@@ -26,6 +26,7 @@ import { MyPlanComponent } from './components/my-plan/my-plan.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalWindowComponent } from './modal-window/modal-window.component';
 
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -38,8 +39,11 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
     NewPasswordComponent,
     NavigationBarComponent,
     HomePageComponent,
-    MyPlanComponent
+    MyPlanComponent,
+    MyPlanComponent,
+    ProfileComponent
   ],
+
   entryComponents: [
     ModalWindowComponent
   ],
@@ -58,7 +62,6 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
     MatListModule,
     MatFormFieldModule, 
     MatInputModule,
-    MatDialogModule,
   ],
 
   providers: [    
