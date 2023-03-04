@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MyPlanComponent } from './components/my-plan/my-plan.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModalWindowComponent } from './modal-window/modal-window.component';
+import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 
 import { ProfileComponent } from './components/profile/profile.component';
 

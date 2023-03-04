@@ -21,18 +21,18 @@ export class ModalWindowComponent implements OnInit {
     
   }
 
-  createGoal() {
-    const goal = {
-      nameGoal: this.nameGoal,
-      task: {
-        taskName: this.taskName,
-        deadline: this.deadline,
-        dayOfWeek: this.dayOfWeek,
-        frequency: this.frequency,
-        time: this.time
-      }
+//  createGoal() {
+//    const goal = {
+//      nameGoal: this.nameGoal,
+  //    task: {
+    //    taskName: this.taskName,
+      //  deadline: this.deadline,
+       // dayOfWeek: this.dayOfWeek,
+        //frequency: this.frequency,
+        //time: this.time
+     // }
       // need to create constructor for object "task"
-    }
-  }
+  //  }
+ // }
 
 }
