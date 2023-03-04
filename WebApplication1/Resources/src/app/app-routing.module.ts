@@ -7,6 +7,7 @@ import { PasswordResetComponent } from './components/authentication/password-res
 import { RegistrationComponent } from './components/authentication/registration/registration';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MyPlanComponent } from './components/my-plan/my-plan.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: 'new-password', component:NewPasswordComponent},
   {path: 'home-page', component: HomePageComponent},
-  {path: 'my-plan', component: MyPlanComponent}
+  {path: 'my-plan', component: MyPlanComponent},
+  {path: 'profile', component: ProfileComponent}
 
 ];
 @NgModule({
