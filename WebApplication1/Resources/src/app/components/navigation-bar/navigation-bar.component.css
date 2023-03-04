@@ -57,7 +57,7 @@ order: 0;
 flex-grow: 0;
 font-family: 'Roboto';
 font-style: normal;
-font-weight: 500;
+font-weight: 0;
 font-size: 12px;
 line-height: 16px;
 text-align: center;
@@ -71,6 +71,8 @@ flex-grow: 0;
 
 .myplan{
   text-align: center;
+  font-size: 12px;
+  color:#FFFFFF;
 }
 
 .members{
