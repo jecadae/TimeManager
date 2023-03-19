@@ -25,7 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MyPlanComponent } from './components/my-plan/my-plan.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
-
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ProfileComponent } from './components/profile/profile.component';
 
 
@@ -53,6 +53,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgxSliderModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
