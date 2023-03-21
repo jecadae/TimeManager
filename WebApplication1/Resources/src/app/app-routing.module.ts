@@ -9,6 +9,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { MyPlanComponent } from './components/my-plan/my-plan.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo:'/login', pathMatch: 'full'},

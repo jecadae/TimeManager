@@ -21,3 +21,9 @@
     bottom: 30px; 
     position: fixed;
 }
+
+.slider{
+    background-color: #D76B49;
+    padding-left: 20%;
+    padding-right: 20%;
+}
