@@ -16,7 +16,7 @@ export class AuthService {
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
     return this.http.post(
-      'МИРОСЛАВ, ДАЙ ССЫЛКУ!',
+      '',
       user,
       {headers: headers}).pipe(map((response:any) => response.json()));
   }
@@ -25,7 +25,7 @@ export class AuthService {
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
     return this.http.post(
-      'МИРОСЛАВ, ДАЙ ССЫЛКУ!',
+      '',
       user,
       {headers: headers}).pipe(map((response:any) => response.json()));
   }
