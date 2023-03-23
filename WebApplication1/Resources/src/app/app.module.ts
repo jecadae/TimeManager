@@ -70,6 +70,7 @@ import { RegistrationComponent } from './components/authentication/registration/
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
+    HttpClientModule
   ],
 
   providers: [

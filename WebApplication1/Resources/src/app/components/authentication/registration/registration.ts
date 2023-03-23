@@ -3,6 +3,7 @@ import { CheckDataService } from '../check-data.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
 import { timeout } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -30,6 +31,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private checkRegistration: CheckDataService,
+    private http: HttpClient,
     private router: Router,
     private auth: AuthService
   ) { }

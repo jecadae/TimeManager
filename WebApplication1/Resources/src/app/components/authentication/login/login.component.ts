@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
 import {CheckDataService} from '../check-data.service';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +17,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private checkLogin: CheckDataService
+    private checkLogin: CheckDataService,
+    private http: HttpClient,
   ) { }
 
+  
   email: string = '';
   password: string = '';
 
@@ -60,6 +64,8 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.http.post('http://localhost:5010/Auth/login', {headers: this.email}).pipe(map((response:any) => response.json()));
     //this.loginForm = new FormGroup(controls: {
     //    'email': new FormControl(formState: '', ValidatorOrOpts: [Validators.required, Validators.email]),
     //    'password': new FormControl(formState: '', ValidatorOrOpts: [Validators.required, Validators.pattern(pattern: )])
