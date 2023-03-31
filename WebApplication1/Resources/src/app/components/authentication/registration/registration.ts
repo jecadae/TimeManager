@@ -5,8 +5,6 @@ import { Router } from '@angular/router'
 import { timeout } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-
-
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.html',

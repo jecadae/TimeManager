@@ -1,2 +1,57 @@
 <app-navigation-bar></app-navigation-bar>
-<p>profile works!</p>
+<p class="my-profile">Настройка профиля</p>
+<p class="personal">Личная информация</p>
+
+    <form class="ChangeData">
+        <div>
+            <label class="name-input">Фамилия</label>
+            <input type="text" name="surname" [(ngModel)]="surname" class="input">
+            <!-- <label class="err-label">{{surnameErrTitle}}</label> -->
+        </div>
+
+        <div>
+            <label class="name-input">Имя</label>
+            <input type="text" name="name" [(ngModel)]="name" class="input">
+            <!-- <label class="err-label">{{nameErrTitle}}</label> -->
+        </div>
+
+        <div>
+            <label class="name-input">Отчество</label>
+            <input type="text" name="patronymic" [(ngModel)]="patronymic" class="input">
+            <!-- <label class="err-label">{{patronymicErrTitle}}</label> -->
+        </div>
+
+        <div>
+            <label class="name-input">Старый пароль</label>
+            <input type="password" name="password" [(ngModel)]="OldPassword" class="input">
+            <!-- <label class="err-label">{{passwordErrTitle}}</label> -->
+        </div>
+
+        <div>
+            <label class="name-input">Новый пароль</label>
+            <input type="password" name="passwordRepead" [(ngModel)]="NewPassword" class="input" id="passwordInput">
+            <!-- <label class="err-label">{{passwordRepeadErrTitle}}</label> -->
+        </div>
+
+        <div>
+            <label class="name-input">Повторите новый пароль</label>
+            <input type="password" name="passwordRepead" [(ngModel)]="NewPasswordRepeat" class="input" id="passwordInput">
+            <!-- <label class="err-label">{{passwordRepeadErrTitle}}</label> -->
+        </div>
+    </form>
+
+<div class="container pt-3">
+    <div class="card text-dark bg-white mx-auto mb-3" style="max-width: 30rem;">
+      <div class="card-body">
+        <form class="form" action="[[~[[*id]]]]" method="post" enctype="multipart/form-data">
+          <!-- блок, содержащий поле photo, с помощью которого будем загружать фото -->
+          <div class="mb-3">
+            <label for="photo" class="form-label">Фото</label>
+            <input type="file" id="photo" name="photo" class="form-control">
+            <div class="invalid-feedback"></div>
+          </div>
+          <input type="submit" class="btn-primary" value="Обновить профиль" name="login-updprof-btn" id="login-updprof-btn">
+        </form>
+      </div>
+    </div>
+  </div>
