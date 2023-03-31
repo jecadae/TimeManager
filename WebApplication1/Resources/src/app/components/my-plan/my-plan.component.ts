@@ -13,7 +13,8 @@ export class MyPlanComponent {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(ModalWindowComponent, {
-
+      width: '733px',
+      height: '576px',
     });
   }
 }

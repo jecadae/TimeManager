@@ -1,0 +1,21 @@
+<mat-card class="frame">
+    <div class="section">
+        <img src="/images/Building Blocks/Monogram.png" class="img">
+        <label class="label" [(ngModel)]="userName">{{userName}}</label>
+        <button class="bb-close" mat-icon-button>
+            <mat-icon class="close-icon">close</mat-icon>
+          </button>
+    </div>
+
+    <div class="progres-section">
+        <mat-progress-bar value="40" color="">[value]="value"</mat-progress-bar>
+        <div class="pr-label-section">
+            <label class="goal" [(ngModel)]="goal">Название цели</label>
+            <section class="percentage-section">
+                <label class="percentage-number">49</label>
+                <label class="percentage-symbol">%</label>
+            </section>
+        </div>
+    </div>
+</mat-card>
+
