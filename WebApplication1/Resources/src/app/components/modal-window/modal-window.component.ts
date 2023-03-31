@@ -1,15 +1,26 @@
-import {Component} from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+const material = [
+  MatFormFieldModule, 
+  MatInputModule
+]
 
   @Component({
     selector: 'app-modal-window',
     templateUrl: 'modal-window.component.html',
     styleUrls: ['./modal-window.component.css']
   })
+
+
   export class ModalWindowComponent {
 
     constructor(public dialogRef: MatDialogRef<ModalWindowComponent>) {}
+    value: any = 'Clear me';
+
+    ngOnInit() {}
 
 }
 

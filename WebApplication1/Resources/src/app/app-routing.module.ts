@@ -8,6 +8,7 @@ import { RegistrationComponent } from './components/authentication/registration/
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MyPlanComponent } from './components/my-plan/my-plan.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MiniProgresCardComponent } from './components/mini-progres-card/mini-progres-card.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'new-password', component:NewPasswordComponent},
   {path: 'home-page', component: HomePageComponent},
   {path: 'my-plan', component: MyPlanComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'mini-card', component: MiniProgresCardComponent }
 
 ];
 @NgModule({

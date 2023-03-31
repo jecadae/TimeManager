@@ -1,0 +1,231 @@
+.frame {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 11px 14px;
+    gap: 6px;
+
+    width: 308px;
+    height: 97px;
+
+    background: #FFFFFF;
+    border: 1px solid #C22918;
+    border-radius: 11px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.section {
+    width: 280px;
+    height: 40px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.img {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 0px;
+    top: calc(50% - 40px/2);
+
+    background: #F8E6E0;
+    border-radius: 100px;
+}
+
+.label {
+    position: absolute;
+    width: 227px;
+    height: 27px;
+    left: calc(50% - 227px/2 + 19.5px);
+    top: calc(50% - 27px - 1.5px);
+
+    /* M3/body/large */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+
+    /* M3/sys/light/on-surface */
+
+    color: #1C1B1F;
+}
+
+.bb-close {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 263px;
+    top: 0px;
+}
+
+.close-icon {
+    font-size: 20px;
+}
+
+.progres-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 1px;
+
+    width: 280px;
+    height: 29px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.pr-label-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 129px;
+
+    width: 280px;
+    height: 24px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.goal {
+    height: 24px;
+
+    /* M3/title/medium */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.15px;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.percentage-section {
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 5px;
+
+    width: 40px;
+    height: 24px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.percentage-number {
+
+    position: relative;
+    width: 19px;
+    height: 24px;
+    left: 5px;
+    top: 0px;
+
+    /* M3/title/medium */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.15px;
+
+    color: #000000;
+}
+
+.percentage-symbol {
+    width: 12px;
+    height: 24px;
+
+    /* M3/title/medium */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.15px;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.for-pr-nb {
+    width: 28px;
+    height: 24px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
