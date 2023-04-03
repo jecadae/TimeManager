@@ -14,12 +14,14 @@
 
 .btn-primary{
     margin-top: 2%;
-    padding-left: 6%;
 }
 
 .ChangeData{
     padding-left: 10%;
-    
+}
+
+.form-label{
+    padding-top: 4%;
 }
 
 .title {
@@ -80,7 +82,7 @@
     font-size: 16px;
     line-height: 16px;
     display: flex;
-
+    margin-top: 2%;
     color: #49454F;
 }
 
