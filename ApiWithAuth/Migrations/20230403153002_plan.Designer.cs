@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ApiWithAuth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiWithAuth.Migrations
 {
     [DbContext(typeof(UsersContext))]
-    partial class UsersContextModelSnapshot : ModelSnapshot
+    [Migration("20230403153002_plan")]
+    partial class plan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +65,7 @@ namespace ApiWithAuth.Migrations
 
                     b.HasIndex("AppPlanId");
 
-                    b.ToTable("AppQuests");
+                    b.ToTable("AppQuest");
                 });
 
             modelBuilder.Entity("ApiWithAuth.Entity.AppUser", b =>

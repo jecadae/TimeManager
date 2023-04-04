@@ -2127,24 +2127,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bolsh\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bolsh\\Documents\\GitHub\\WebApplication1\\WebApplication1\\ApiWithAuth.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\WebApplication1\\ApiWithAuth\\ApiWithAuth.csproj",
       "projectName": "ApiWithAuth",
-      "projectPath": "C:\\Users\\bolsh\\Documents\\GitHub\\WebApplication1\\WebApplication1\\ApiWithAuth.csproj",
-      "packagesPath": "C:\\Users\\bolsh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bolsh\\Documents\\GitHub\\WebApplication1\\WebApplication1\\obj\\",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\WebApplication1\\ApiWithAuth\\ApiWithAuth.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\WebApplication1\\ApiWithAuth\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\bolsh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2213,7 +2220,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
