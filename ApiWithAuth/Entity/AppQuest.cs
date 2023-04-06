@@ -8,5 +8,5 @@ public class AppQuest
     public DateTime DeadLine { get; set; }
     private bool priv { get; set; } = false;
     public bool Status { get; set; } = false;
-    public ICollection<Link> Links { get; set; } = new List<Link>();
+    public List<string> Links { get; set; } = new List<string>();
 }
