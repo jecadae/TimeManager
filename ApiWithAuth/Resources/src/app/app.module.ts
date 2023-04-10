@@ -70,7 +70,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MiniProgresCardComponent } from './components/mini-progres-card/mini-progres-card.component';
-import { ProgressCardComponent } from './progress-card/progress-card.component';
+import { ProgressCardComponent } from './components/progress-card/progress-card.component';
+import { MyPlanCardComponent } from './components/my-plan-card/my-plan-card.component';
 
 
 const matModule = [
@@ -140,7 +141,8 @@ const matModule = [
     ProfileComponent,
     ModalWindowComponent,
     MiniProgresCardComponent,
-    ProgressCardComponent
+    ProgressCardComponent,
+    MyPlanCardComponent
 
   ],
 

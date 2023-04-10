@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProgressCardComponent } from 'src/app/progress-card/progress-card.component';
+import { ProgressCardComponent } from 'src/app/components/progress-card/progress-card.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,4 +23,14 @@ const material = [
 export class MiniProgresCardComponent {
   userName: string = 'Иванов Иван Иванович'
   goal: string = 'Название цели'
+
+    constructor(public dialog: MatDialog) {}
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ProgressCardComponent, {
+      width: '800px',
+      height: '552.78px',
+    });
+  }
+
 }

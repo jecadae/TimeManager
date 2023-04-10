@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
+import { MyPlanCardComponent } from '../my-plan-card/my-plan-card.component';
 
 @Component({
   selector: 'app-my-plan',
