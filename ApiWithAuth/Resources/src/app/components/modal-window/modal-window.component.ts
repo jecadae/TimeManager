@@ -22,6 +22,9 @@ const material = [
 
     ngOnInit() {}
 
+    privacy: string = '';
+    choicePrivacy: string[] = ['Ссылка видна только мне', 'Ссылка доступна всем пользователям'];
+
 }
 
 
