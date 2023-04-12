@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.http.post('http://localhost:5010/Auth/login', {headers: this.email}).pipe(map((response:any) => response.json()));
+    this.http.post('https://localhost:44393/Auth/register', {headers: this.email}).pipe(map((response:any) => response.json()));
     //this.loginForm = new FormGroup(controls: {
     //    'email': new FormControl(formState: '', ValidatorOrOpts: [Validators.required, Validators.email]),
     //    'password': new FormControl(formState: '', ValidatorOrOpts: [Validators.required, Validators.pattern(pattern: )])
