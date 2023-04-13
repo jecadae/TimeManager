@@ -7,7 +7,7 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private url = "http://localhost:44393/Auth/login";
   constructor(private http: HttpClient) {}
 
   token: any;
@@ -25,10 +25,8 @@ export class AuthService {
   logUser(user: any) {
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
-    return this.http.post(
-      'https://localhost:44393/Auth/register',
-      user,
-      {headers: headers}).pipe(map((response:any) => response.json()));
+    return this.http.post<User>(
+      this.url, JSON.stringify(user));
   }
   
   passwordReset(user: any) {
