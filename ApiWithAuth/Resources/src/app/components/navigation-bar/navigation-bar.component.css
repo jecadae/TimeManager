@@ -6,13 +6,13 @@
 
 .sidenav {
   background: #D76B49;
-  width: 7.5%;
+  width: 6.8%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 28px 14px;
-  gap: 31px;
+  gap: 26px;
 }
 
 .sidenav .mat-toolbar {
@@ -42,17 +42,15 @@
 
 .ng-button {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 3px;
+  flex-direction: inherit;
+  padding: 0px;
   margin-bottom: 20px;
-  width: 78px;
-  height: 80px;
+  width: 86px;
+  height: 90px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
   text-align: center;
   letter-spacing: 1px;
