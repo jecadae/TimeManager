@@ -9,7 +9,7 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddDbContext<ApplicationDbContext>();
+
 builder.Services.AddDbContext<UsersContext>();
 builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddControllers();

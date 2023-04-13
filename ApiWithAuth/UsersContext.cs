@@ -19,8 +19,8 @@ public class UsersContext : IdentityUserContext<AppUser>
         options.UseNpgsql("Host=localhost;Database=UserBase;Username=postgres;Password=1234;Port=5432");
     }
 
-
-
+    public DbSet<AppPlan> AppPlans{ get; set; }
+    public DbSet<AppQuest> AppQuests{ get; set; }
 
 
 

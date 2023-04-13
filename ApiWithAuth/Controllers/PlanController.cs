@@ -9,40 +9,26 @@ using Microsoft.AspNetCore.Mvc;
 
 [Authorize]
 [ApiController]
-[Route("[controller]")]
+[Route("/Plan/[controller]")]
 public class PlanController: ControllerBase
 {    
 
-    private readonly ApplicationDbContext _context;
+    private readonly UsersContext _context;
 
 
-    public PlanController( ApplicationDbContext context)
+    public PlanController( UsersContext context)
     {
         _context = context;
     }
 
 
     [HttpPost]
-    [Route("CreatePlan")]
-    public async Task<IResult> GetPlan(AppPlan request )
+    [Route("Create")]
+    public async Task<IResult> CreatePlan(AppPlan request )
     {
-        //Обработку бд запихать нада
-       /* AppPlan plan = new AppPlan();
-        plan.Id = 11111;
-        plan.Creater = "111111";
-        plan.Name = "11111";
-        var que = new AppQuest{Links = {"a","b"}};
-        que.Links.Add("123");
-        que.Id = 15;
-        que.Discription = "1231";
-        que.Parent = plan.Id;
-        plan.Quests.Add(que);*/
-        foreach (var appQuest in request.Quests)
-        {
-            appQuest.Init(request.Id);
-        }
         
-        var result = _context.AppPlans.Add(request);
+        
+        var result = _context.AppPlans;
         await _context.SaveChangesAsync();
         return Results.Ok();
         
@@ -50,8 +36,8 @@ public class PlanController: ControllerBase
 
 
 
-    [HttpPost]
-    [Route("C")]
+    [HttpGet]
+    [Route("Read")]
     public async Task<IResult> CreatePlane(CreatePlanRequest request)
     {
         

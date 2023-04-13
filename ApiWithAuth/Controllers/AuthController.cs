@@ -36,7 +36,7 @@ public class AuthController : ControllerBase
         if (result.Succeeded)
         {
             request.Password = "";
-            return CreatedAtAction(nameof(Register), new {email = request.Email}, request);
+            return Ok();
         }
         
         foreach (var error in result.Errors) { 
@@ -77,7 +77,6 @@ public class AuthController : ControllerBase
      
         return Ok(new AuthResponse
         {
-            Username = userInDb.UserName,
             Email = userInDb.Email,
             Token = accessToken,
         });
@@ -117,7 +116,6 @@ public class AuthController : ControllerBase
      
         return Ok(new AuthResponse
         {
-            Username = userInDb.UserName,
             Email = userInDb.Email,
             Token = accessToken,
         });
