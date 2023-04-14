@@ -42,3 +42,8 @@
 .button {
     color: rgb(255, 255, 255);
 }
+
+.card{
+    position: absolute;
+    padding-left: 36px;
+}
