@@ -1,6 +1,8 @@
 using ApiWithAuth.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiWithAuth.Controllers;
 
@@ -77,7 +79,9 @@ public class AuthController : ControllerBase
      
         return Ok(new AuthResponse
         {
+            id =userInDb.Id,
             Email = userInDb.Email,
+            AppPlans = await _context.AppPlans.Include(x => x.Quests).Where(x => x.Id == userInDb.Id).ToArrayAsync(),
             Token = accessToken,
         });
     }
@@ -120,6 +124,23 @@ public class AuthController : ControllerBase
             Token = accessToken,
         });
     }
-    
-    
+
+    [HttpPost]
+    [Route("rename")]
+    [Authorize]
+    public async Task<ActionResult<AuthResponse>> Rename(long id, string name,string famile, string patronymic)
+    {
+        var userInDb = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        if (userInDb is null)
+        {
+            return NotFound();
+        }
+        userInDb.FirstName = name;
+        userInDb.Patronymic = patronymic;
+        userInDb.LastName = famile;
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+
 }

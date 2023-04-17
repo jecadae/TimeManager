@@ -13,7 +13,7 @@ public class AppQuest
     [ForeignKey("AppPlan")]
     [JsonIgnore]
     public long Parent { get; set; }
-    public string Discription{ get; set; }
+    public string? Discription{ get; set; }
     public DateTime DeadLine { get; set; }
     private bool priv { get; set; } = false;
     public bool Status { get; set; } = false;

@@ -7,13 +7,19 @@ namespace ApiWithAuth.Entity;
 public class AppPlan
 {
     
-    public string Name { get; set; }
+    public string? Name { get; set; }
     [Key]
+    public long? Id { get; set; }
     [JsonIgnore]
-    public long Id { get; set; }
-    [ForeignKey("AppUser")]
-    [JsonIgnore]
-    public long  Creater{ get; set; }
+    public long  AppUserId{ get; set; }
     public bool done { get; set; } = false;
     public IList<AppQuest> Quests { get; set; } = new List<AppQuest>();
+
+    public void Update(AppPlan appPlan)
+    {
+        this.done = appPlan.done;
+        this.Name = appPlan.Name;
+        this.Quests = appPlan.Quests;
+        
+    }
 }

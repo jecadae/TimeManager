@@ -1,11 +1,11 @@
 using ApiWithAuth.Entity;
-using Microsoft.AspNetCore.Identity;
+
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiWithAuth;
 
-public class UsersContext : IdentityUserContext<AppUser>
+public class UsersContext : IdentityUserContext<AppUser,long>
 {
     public UsersContext (DbContextOptions<UsersContext> options)
         : base(options)
