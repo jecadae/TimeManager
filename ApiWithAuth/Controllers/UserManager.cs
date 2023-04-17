@@ -6,7 +6,7 @@ namespace ApiWithAuth.Controllers;
 
 
 
-[Authorize]
+
 [ApiController]
 [Route("/[controller]")]
 public class UserManager: ControllerBase
@@ -20,12 +20,25 @@ public class UserManager: ControllerBase
     }
 
     [HttpPost]
-    [Route("Create")]
-    public async Task<IActionResult> CreatePlanAsync(AppPlan request, string email)
+    [Route("CheckServer")]
+    public async Task<IActionResult> CheckServer()
     {
-        
-        
+        return Ok();
     }
-
+     
+    
+    /// <summary>
+    /// получить список друзьяшек
+    /// добавить и удалить друзьяшку из списка
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    [HttpPost]
+    [Route("CheckServer")]
+    public async Task<IActionResult> C()
+    {
+        return Ok();
+    }
+    
 
 }
