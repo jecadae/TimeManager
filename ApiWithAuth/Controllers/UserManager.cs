@@ -21,10 +21,10 @@ public class UserManager: ControllerBase
 
     [HttpPost]
     [Route("Create")]
-    public async Task<IActionResult> CreatePlanAsync(AppPlan request, string email)
+    public async Task<IActionResult> CreatePlanAsync()
     {
-        
-        
+
+        return Ok();
     }
 
 
