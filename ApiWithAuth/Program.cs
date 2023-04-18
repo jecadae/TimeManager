@@ -9,7 +9,7 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 
-
+builder.Services.AddCors();
 builder.Services.AddDbContext<UsersContext>();
 builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddControllers();
@@ -77,7 +77,7 @@ builder.Services
 
 
 var app = builder.Build();
-
+app.UseCors(builder=>builder.WithOrigins("https://localhost:4200").AllowAnyHeader());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

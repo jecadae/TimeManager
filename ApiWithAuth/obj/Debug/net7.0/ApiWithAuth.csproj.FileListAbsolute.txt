@@ -369,3 +369,13 @@ C:\Users\User\Documents\GitHub\WebApplication1\ApiWithAuth\obj\Debug\net7.0\refi
 C:\Users\User\Documents\GitHub\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.pdb
 C:\Users\User\Documents\GitHub\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.genruntimeconfig.cache
 C:\Users\User\Documents\GitHub\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ref\ApiWithAuth.dll
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.csproj.AssemblyReference.cache
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.GeneratedMSBuildEditorConfig.editorconfig
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.AssemblyInfoInputs.cache
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.AssemblyInfo.cs
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.csproj.CoreCompileInputs.cache
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.MvcApplicationPartsAssemblyInfo.cs
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.MvcApplicationPartsAssemblyInfo.cache
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.dll
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\refint\ApiWithAuth.dll
+D:\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.pdb
