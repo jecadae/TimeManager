@@ -42,8 +42,8 @@ public class PlanController: ControllerBase
 
 
     [HttpGet]
-    [Route("GetUserPlans")]
-    public async Task<IActionResult> CreatePlaneAsync(string email)
+    [Route("GetUsersPlans{email}")]
+    public async Task<IActionResult> GetUsersPlansAsync(string email)
     {
         if (!ModelState.IsValid)
         {
@@ -57,7 +57,7 @@ public class PlanController: ControllerBase
 
 
     [HttpPut]
-    [Route("PutUserPlans")]
+    [Route("PutUserPlans/{id}")]
     public async Task<IActionResult> UpdatePlaneAsync(AppPlan request, long id)
     {
         var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == id);
@@ -66,24 +66,20 @@ public class PlanController: ControllerBase
             return BadRequest(NotFound());  
         }
 
-        result.Update(request);
+        _context.AppPlans.Update(request);
         await _context.SaveChangesAsync();
         return (Ok(result));
     }
 
     [HttpDelete]
-    [Route("DeleteUserPlans")]
-    public async Task<IActionResult> RemovePlanAsync( long id)
+    [Route("DeleteUserPlans{id}")]
+    public async Task<IActionResult> RemovePlanAsync(long id)
     {
-        var result = await _context.AppPlans.Include(x=>x.Quests).FirstOrDefaultAsync(x => x.Id == id);
+        var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == id);
         _context.Remove(result);
         await _context.SaveChangesAsync();
         return Ok();
     }
-    
-    
-    
-    
 }
 
 

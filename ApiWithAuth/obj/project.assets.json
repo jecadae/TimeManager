@@ -2127,23 +2127,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ZhidovkinDY\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WebApplication1\\ApiWithAuth\\ApiWithAuth.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\WebApplication1\\ApiWithAuth\\ApiWithAuth.csproj",
       "projectName": "ApiWithAuth",
-      "projectPath": "D:\\WebApplication1\\ApiWithAuth\\ApiWithAuth.csproj",
-      "packagesPath": "C:\\Users\\ZhidovkinDY\\.nuget\\packages\\",
-      "outputPath": "D:\\WebApplication1\\ApiWithAuth\\obj\\",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\WebApplication1\\ApiWithAuth\\ApiWithAuth.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\WebApplication1\\ApiWithAuth\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ZhidovkinDY\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2219,7 +2220,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

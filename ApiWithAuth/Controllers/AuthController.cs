@@ -79,9 +79,8 @@ public class AuthController : ControllerBase
      
         return Ok(new AuthResponse
         {
-            id =userInDb.Id,
             Email = userInDb.Email,
-            AppPlans = await _context.AppPlans.Include(x => x.Quests).Where(x => x.Id == userInDb.Id).ToArrayAsync(),
+            AppPlans = await _context.AppPlans.Include(x => x.Quests).Where(x => x.AppUserId == userInDb.Id).ToArrayAsync(),
             Token = accessToken,
         });
     }
@@ -128,9 +127,9 @@ public class AuthController : ControllerBase
     [HttpPost]
     [Route("rename")]
     [Authorize]
-    public async Task<ActionResult<AuthResponse>> Rename(long id, string name,string famile, string patronymic)
+    public async Task<ActionResult<AuthResponse>> Rename(string email, string name,string famile, string patronymic)
     {
-        var userInDb = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        var userInDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (userInDb is null)
         {
             return NotFound();
@@ -139,6 +138,17 @@ public class AuthController : ControllerBase
         userInDb.Patronymic = patronymic;
         userInDb.LastName = famile;
         await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpPost]
+    [Route("ForgotPass")]
+    public async Task<ActionResult<AuthResponse>> ForgotPass(string email)
+    {
+        var userInDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        string resetToken = await _userManager.GeneratePasswordResetTokenAsync(userInDb);
+       //var message = new 
+        Console.WriteLine(resetToken);
         return Ok();
     }
 

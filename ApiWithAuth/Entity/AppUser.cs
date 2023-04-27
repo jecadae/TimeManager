@@ -4,13 +4,15 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ApiWithAuth.Entity;
 
-public class AppUser: IdentityUser<long>
+public class AppUser: IdentityUser<int>
 {
     
     public string? FirstName { get; set; }
     public string? LastName{get;set;}
     public string? Patronymic{get;set;}
+    public int? AppUserIconsId{get;set;}
     [JsonIgnore] 
     public List<AppPlan>? UserPlans { get; set; } = new List<AppPlan>();
-    public int[] PinnedUser = new int[0];
+    public AppUserIcon? AppUserIcon { get; set; }
+    
 }

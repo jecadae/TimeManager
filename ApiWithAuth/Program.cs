@@ -3,6 +3,7 @@ using ApiWithAuth;
 using ApiWithAuth.Entity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddCors();
-builder.Services.AddDbContext<UsersContext>();
+builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=UserBase;Username=postgres;Password=1234;Port=5432"));
 builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddControllers();
 
@@ -73,11 +74,14 @@ builder.Services
         options.Password.RequireUppercase = false;
         options.Password.RequireLowercase = false;
     })
-    .AddEntityFrameworkStores<UsersContext>();
-
+    .AddEntityFrameworkStores<UsersContext>()
+    .AddDefaultTokenProviders();
+builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
+    opt.TokenLifespan = TimeSpan.FromHours(2));
 
 var app = builder.Build();
 app.UseCors(builder=>builder.WithOrigins("http://localhost:4200/registration").AllowAnyHeader());
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

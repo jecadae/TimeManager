@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiWithAuth.Migrations
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20230416191849_Initial")]
+    [Migration("20230427174924_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,17 +27,16 @@ namespace ApiWithAuth.Migrations
 
             modelBuilder.Entity("ApiWithAuth.Entity.AppPlan", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long?>("Id"));
 
-                    b.Property<long>("AppUserId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("done")
@@ -61,19 +60,19 @@ namespace ApiWithAuth.Migrations
                     b.Property<long?>("AppPlanId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("AppUserEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("DeadLine")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Discription")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<List<string>>("Links")
                         .IsRequired()
                         .HasColumnType("text[]");
-
-                    b.Property<long>("Parent")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("Status")
                         .HasColumnType("boolean");
@@ -87,22 +86,23 @@ namespace ApiWithAuth.Migrations
 
             modelBuilder.Entity("ApiWithAuth.Entity.AppUser", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("AppUserIconsId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
@@ -120,12 +120,10 @@ namespace ApiWithAuth.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -146,22 +144,38 @@ namespace ApiWithAuth.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                    b.HasIndex("AppUserIconsId")
+                        .IsUnique();
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
+            modelBuilder.Entity("ApiWithAuth.Entity.AppUserIcon", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("Id"));
+
+                    b.Property<int?>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("integer");
+
+                    b.Property<byte[]>("ImageArray")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUserIcons");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,54 +189,50 @@ namespace ApiWithAuth.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("UserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProviderKey")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("ProviderKey")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("UserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("LoginProvider")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("UserTokens");
                 });
 
             modelBuilder.Entity("ApiWithAuth.Entity.AppPlan", b =>
@@ -241,31 +251,14 @@ namespace ApiWithAuth.Migrations
                         .HasForeignKey("AppPlanId");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
+            modelBuilder.Entity("ApiWithAuth.Entity.AppUser", b =>
                 {
-                    b.HasOne("ApiWithAuth.Entity.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.HasOne("ApiWithAuth.Entity.AppUserIcon", "AppUserIcon")
+                        .WithOne("AppUser")
+                        .HasForeignKey("ApiWithAuth.Entity.AppUser", "AppUserIconsId")
+                        .HasPrincipalKey("ApiWithAuth.Entity.AppUserIcon", "AppUserId");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
-                {
-                    b.HasOne("ApiWithAuth.Entity.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
-                {
-                    b.HasOne("ApiWithAuth.Entity.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AppUserIcon");
                 });
 
             modelBuilder.Entity("ApiWithAuth.Entity.AppPlan", b =>
@@ -276,6 +269,11 @@ namespace ApiWithAuth.Migrations
             modelBuilder.Entity("ApiWithAuth.Entity.AppUser", b =>
                 {
                     b.Navigation("UserPlans");
+                });
+
+            modelBuilder.Entity("ApiWithAuth.Entity.AppUserIcon", b =>
+                {
+                    b.Navigation("AppUser");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,15 +11,8 @@ public class AppPlan
     [Key]
     public long? Id { get; set; }
     [JsonIgnore]
-    public long  AppUserId{ get; set; }
+    public int AppUserId{ get; set; }
     public bool done { get; set; } = false;
     public IList<AppQuest> Quests { get; set; } = new List<AppQuest>();
-
-    public void Update(AppPlan appPlan)
-    {
-        this.done = appPlan.done;
-        this.Name = appPlan.Name;
-        this.Quests = appPlan.Quests;
-        
-    }
+    
 }
