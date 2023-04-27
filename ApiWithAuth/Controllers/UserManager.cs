@@ -20,9 +20,16 @@ public class UserManager: ControllerBase
     }
 
     [HttpPost]
+<<<<<<< HEAD
     [Route("CheckServer")]
     public async Task<IActionResult> CheckServer()
     {
+=======
+    [Route("Create")]
+    public async Task<IActionResult> CreatePlanAsync()
+    {
+
+>>>>>>> bf90d5c1cb2f368eb924a6d85715fb78a4999b1d
         return Ok();
     }
      

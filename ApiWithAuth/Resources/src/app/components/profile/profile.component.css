@@ -5,11 +5,15 @@
     text-align: center;
 }
 
+.wraper{
+    padding-left: 26%;
+}
+
 .personal{
     font-family: 'Roboto';
     font-style: bold;
     font-size: 32px;
-    margin-left: 10%;
+    margin-left: 40%;
 }
 
 .btn-primary{

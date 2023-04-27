@@ -1,7 +1,7 @@
 <app-navigation-bar></app-navigation-bar>
 <p class="my-profile">Настройка профиля</p>
 <p class="personal">Личная информация</p>
-
+<div class="wraper">
     <form class="ChangeData">
         <div>
             <label class="name-input">Фамилия</label>
@@ -41,7 +41,7 @@
     </form>
 
 <div class="container pt-3">
-    <div class="card text-dark bg-white mx-auto mb-3" style="max-width: 30rem;">
+    <div class="card text-dark bg-white mx-auto mb-3" style="max-width: 46rem;">
       <div class="card-body">
         <form class="form" action="[[~[[*id]]]]" method="post" enctype="multipart/form-data">
           <!-- блок, содержащий поле photo, с помощью которого будем загружать фото -->
@@ -55,3 +55,4 @@
       </div>
     </div>
   </div>
+</div>
