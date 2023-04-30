@@ -9,8 +9,12 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddCors();
+builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", builder => builder
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowAnyOrigin()
+    )
+);
 builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=UserBase;Username=postgres;Password=1234;Port=5432"));
 builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddControllers();
@@ -80,7 +84,7 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
     opt.TokenLifespan = TimeSpan.FromHours(2));
 
 var app = builder.Build();
-app.UseCors(builder=>builder.WithOrigins("http://localhost:4200/registration").AllowAnyHeader());
+app.UseCors("AllowLocalhost");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
