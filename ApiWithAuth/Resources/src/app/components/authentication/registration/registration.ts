@@ -2,7 +2,6 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { CheckDataService } from '../check-data.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
-import { timeout } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
