@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
 import { NgModule } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -29,7 +29,11 @@ export class HomePageComponent {
     shareReplay()
   );
 
+  userName: string = 'Иванов Иван Иванович'
+
 constructor(private breakpointObserver: BreakpointObserver) {}
-
-
 }
+
+// ngOnInit(): void{
+//   this.BreakpointObserver.getALL().subscribe(next: ())
+// }

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private url = 'https://localhost:44393/Auth/register';
   constructor(private http: HttpClient) {}

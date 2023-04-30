@@ -13,8 +13,6 @@ const material = [
   MatInputModule
 ]
 
-
-
 @Component({
   selector: 'app-mini-progres-card',
   templateUrl: './mini-progres-card.component.html',
