@@ -10,9 +10,9 @@
     <div class="progres-section">
         <mat-progress-bar value="40" color="">[value]="value"</mat-progress-bar>
         <div class="pr-label-section">
-            <label class="goal" [(ngModel)]="goal">Название цели</label>
+            <label class="goal" [(ngModel)]="goal">{{goal}}</label>
             <section class="percentage-section">
-                <label class="percentage-number">49</label>
+                <label class="percentage-number" [(ngModel)]="value">{{value}}</label>
                 <label class="percentage-symbol">%</label>
             </section>
         </div>

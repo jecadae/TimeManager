@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
 })
 
 export class AuthService {
-  private url = 'https://localhost:44393/Auth/register';
   constructor(private http: HttpClient) {}
 
   token: any;
@@ -16,8 +15,9 @@ export class AuthService {
   regUser(user: any) {
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
+    headers.append('accept', 'value')
     return this.http.post(
-      'https://localhost:44393/UserManager/Create',
+      'https://localhost:44393/Auth/register',
       user,
       {headers: headers}).pipe(map((response:any) => response.json()));
   }
