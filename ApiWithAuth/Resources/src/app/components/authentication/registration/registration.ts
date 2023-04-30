@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
     const user = {
       LastName: this.surname,
       FirstName: this.name,
-      patronymic: this.patronymic,
+      Patronymic: this.patronymic,
       email: this.email,
       password: this.password,
       passwordRepead: this.passwordRepead
@@ -68,7 +68,7 @@ export class RegistrationComponent implements OnInit {
       this.nameErrTitle = 'Имя не введено'
       errCount++;
     }
-    if (!this.checkRegistration.checkNullPatronymic(user.patronymic)) {
+    if (!this.checkRegistration.checkNullPatronymic(user.Patronymic)) {
       this.patronymicErrTitle = 'Отчество не введено'
       errCount++;
     }

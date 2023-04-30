@@ -19,7 +19,7 @@ const material = [
   templateUrl: './mini-progres-card.component.html',
   styleUrls: ['./mini-progres-card.component.css']
 })
-export class MiniProgresCardComponent implements OnInit {
+export class MiniProgresCardComponent  {
 
   // user = User;
 
@@ -33,13 +33,18 @@ export class MiniProgresCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http
-      .get('user.json')
-      .subscribe((data: User) => (this.user = data))
+    // this.http
+    //   .get('user.json')
+    //   .subscribe((data: User) => (this.user = data))
   }
 
-  userName: string = user.name;
-  goal: string = user.goal;
-  value: number = user.procente;
+
+  userName: string = '';
+  goal: string = '';
+  value: number = 0;
+
+  // userName: string = user.name;
+  // goal: string = user.goal;
+  // value: number = user.procente;
 
 }
