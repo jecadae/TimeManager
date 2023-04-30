@@ -42,8 +42,8 @@ export class RegistrationComponent implements OnInit {
 
   userRegistrationClick() {
     const user = {
-      surname: this.surname,
-      name: this.name,
+      LastName: this.surname,
+      FirstName: this.name,
       patronymic: this.patronymic,
       email: this.email,
       password: this.password,
@@ -60,11 +60,11 @@ export class RegistrationComponent implements OnInit {
 
     let errCount = 0;
 
-    if (!this.checkRegistration.checkNullSurname(user.surname)) {
+    if (!this.checkRegistration.checkNullSurname(user.LastName)) {
       this.surnameErrTitle = 'Фамилия не введена';
       errCount++;
     }
-    if (!this.checkRegistration.checkNullName(user.name)) {
+    if (!this.checkRegistration.checkNullName(user.FirstName)) {
       this.nameErrTitle = 'Имя не введено'
       errCount++;
     }
