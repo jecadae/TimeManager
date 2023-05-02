@@ -29,27 +29,17 @@ public class AuthController : ControllerBase
         {
             return BadRequest(ModelState);  
         }
-
-        var result = await _userManager.CreateAsync(
-            new AppUser { UserName = request.Email, Email = request.Email,FirstName = request.FirstName,LastName = request.LastName,Patronymic = request.Patronymic},
-            request.Password
-        );
-
-        if (result.Succeeded)
-        {
-            request.Password = "";
-            return Ok();
-        }
         
-        foreach (var error in result.Errors) { 
-            ModelState.AddModelError(error.Code, error.Description); 
-        }
-        return BadRequest(ModelState);
+        var result = await _userManager.CreateAsync(
+            new AppUser { UserName = request.Email, Email = request.Email,
+                FirstName = request.FirstName,LastName = request.LastName,Patronymic = request.Patronymic}, request.Password
+        );
+        
+        return Ok();
     }
     
     [HttpPost]
     [Route("login")]
-    
     public async Task<IActionResult> Authenticate(AuthRequest request)
     {
         if (!ModelState.IsValid)
