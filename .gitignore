@@ -5,17 +5,20 @@
 
 # User-specific files
 *.rsuser
-*.suo
+*.idea
 *.user
 *.userosscache
 *.sln.docstates
-
+*ApiWithAuth/bin
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*.ApiWithAuth/.idea
+*.ApiWithAuth/.vscode
 
 # Mono auto generated files
 mono_crash.*
-
+*.ApiWithAuth/obj
+*ApiWithAuth/obj
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

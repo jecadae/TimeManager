@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatCard } from '@angular/material/card';
+import { HttpClient } from '@angular/common/http';
 
 const material = [
   MatCard,
@@ -18,9 +19,9 @@ const material = [
   templateUrl: './mini-progres-card.component.html',
   styleUrls: ['./mini-progres-card.component.css']
 })
-export class MiniProgresCardComponent {
-  userName: string = 'Иванов Иван Иванович'
-  goal: string = 'Название цели'
+export class MiniProgresCardComponent  {
+
+  // user = User;
 
     constructor(public dialog: MatDialog) {}
 
@@ -30,5 +31,20 @@ export class MiniProgresCardComponent {
       height: '552.78px',
     });
   }
+
+  ngOnInit() {
+    // this.http
+    //   .get('user.json')
+    //   .subscribe((data: User) => (this.user = data))
+  }
+
+
+  userName: string = '';
+  goal: string = '';
+  value: number = 0;
+
+  // userName: string = user.name;
+  // goal: string = user.goal;
+  // value: number = user.procente;
 
 }
