@@ -102,7 +102,7 @@ export class RegistrationComponent implements OnInit {
       }
       else {
         alert('Регистрация прошла успешно')
-        this.router.navigate(['/login']);
+        this.router.navigate(['localhost:4200/login']);
       }
     })
     return
