@@ -85,7 +85,7 @@ export class RegistrationComponent implements OnInit {
       this.passwordErrTitle = 'Пароль не введен'
       errCount++;
     } else if (!this.checkRegistration.checkPasswordStrength(user.password)) {
-      this.passwordErrTitle = 'Необходимы строчные и заглавные латинские буквы, цифры. Длина или более'
+      this.passwordErrTitle = 'Необходимы строчные и заглавные латинские буквы, цифры. Длина 8 символов или более'
       errCount++;
     }
 

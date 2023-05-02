@@ -29,8 +29,6 @@ export class HomePageComponent {
     shareReplay()
   );
 
-  userName: string = 'Иванов Иван Иванович'
-
 constructor(private breakpointObserver: BreakpointObserver) {}
 }
 
