@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
-import {CheckDataService} from '../check-data.service';
+import  {CheckDataService } from '../check-data.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { RegistrationComponent } from '../registration/registration'; 
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
   
   email: string = '';
   password: string = '';
-
+  data: any;
   errLabel: string = ''
   emailErrLabel: string = ''
 
@@ -33,8 +35,8 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password
     }
-    let errCount = 0;
 
+    let errCount = 0;
     this.errLabel = '';
     this.emailErrLabel = '';
 
@@ -52,12 +54,12 @@ export class LoginComponent implements OnInit {
     if (errCount > 0) return false
 
     this.auth.logUser(user).subscribe(data => {
-      if (!data.succes) {
+      if (!this.data.succes) {
         this.errLabel = 'Неверный email или пароль'
       }
       else 
       this.router.navigate(['/home-page']);
-      this.auth.platformUser(data.token, data.user)
+      this.auth.platformUser(this.data.token, this.data.user)
     })
     return
 }
