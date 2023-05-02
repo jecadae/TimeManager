@@ -35,7 +35,7 @@ export class AuthService {
     return this.http.post(
       'https://localhost:44393/Auth/login',
       user,
-      {headers: headers}).pipe((response:any) => response.json());
+      {headers: headers}).pipe((response:any) => response);
   }
   
   passwordReset(user: any) {
