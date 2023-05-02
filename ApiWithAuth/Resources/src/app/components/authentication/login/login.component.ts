@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
-import  {CheckDataService } from '../check-data.service';
+import { CheckDataService } from '../check-data.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { RegistrationComponent } from '../registration/registration'; 
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private checkRegistration: CheckDataService,
     private auth: AuthService,
     private checkLogin: CheckDataService,
     private http: HttpClient,
@@ -53,20 +54,27 @@ export class LoginComponent implements OnInit {
 
     if (errCount > 0) return false
     
-    this.auth.logUser(user).subscribe(data => {
-      (data: any) => {
-      if (!data.succes) {
-        this.errLabel = 'Неверный email или пароль'
-      }
-      else 
-      this.auth.platformUser(data.token, data.user)
-      this.router.navigate(['http://localhost:4200/home-page']);
-    }
-    })
+    this.auth.logUser(user).subscribe((data: any) => {
+      try {
+        data
+        .post('localhost:44393/Auth/login')
+        this.router.navigate(['localhost:4200/my-plan']);
+        } catch (error){
+          alert('Ошибка')
+        }
+      });
+      // if (!data.succes) {
+      //   this.errLabel = 'Неверный email или пароль'
+      // }
+      // else 
+      // this.auth.platformUser(data.token, data.user)
+      // this.router.navigate(['localhost:4200/home-page']);
+      //})
     return
 }
 
 
   ngOnInit(): void {
+    
   }
 }
