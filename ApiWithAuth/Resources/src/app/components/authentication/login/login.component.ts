@@ -52,14 +52,16 @@ export class LoginComponent implements OnInit {
       errCount++; }
 
     if (errCount > 0) return false
-
+    
     this.auth.logUser(user).subscribe(data => {
-      if (!this.data.succes) {
+      (data: any) => {
+      if (!data.succes) {
         this.errLabel = 'Неверный email или пароль'
       }
       else 
       this.router.navigate(['/home-page']);
-      this.auth.platformUser(this.data.token, this.data.user)
+      this.auth.platformUser(data.token, data.user)
+    }
     })
     return
 }
