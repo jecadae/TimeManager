@@ -16,6 +16,7 @@ public class UsersContext : IdentityUserContext<AppUser,int>
     {
         modelBuilder.Entity<IdentityUserLogin<int>>().HasNoKey();
         modelBuilder.Entity<IdentityUserToken<int>>().HasNoKey();
+        modelBuilder.Entity<IdentityUser<int>>().Ignore(Users => Users.UserName);
 
         modelBuilder.Entity<AppUserIcon>()
             .HasOne<AppUser>(ic =>ic.AppUser )

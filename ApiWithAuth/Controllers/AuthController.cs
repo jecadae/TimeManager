@@ -31,7 +31,7 @@ public class AuthController : ControllerBase
         }
 
         var result = await _userManager.CreateAsync(
-            new AppUser { UserName = request.Username, Email = request.Email,FirstName = request.FirstName,LastName = request.LastName,Patronymic = request.Patronymic},
+            new AppUser { UserName = request.Email, Email = request.Email,FirstName = request.FirstName,LastName = request.LastName,Patronymic = request.Patronymic},
             request.Password
         );
 
@@ -49,7 +49,8 @@ public class AuthController : ControllerBase
     
     [HttpPost]
     [Route("login")]
-    public async Task<ActionResult<AuthResponse>> Authenticate([FromBody] AuthRequest request)
+    
+    public async Task<IActionResult> Authenticate(AuthRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -76,13 +77,13 @@ public class AuthController : ControllerBase
         
         var accessToken = _tokenService.CreateToken(userInDb);
         await _context.SaveChangesAsync();
-     
-        return Ok(new AuthResponse
+        Console.WriteLine($"{userInDb.Email},{accessToken}");
+        var Auth = new AuthResponse
         {
             Email = userInDb.Email,
-            AppPlans = await _context.AppPlans.Include(x => x.Quests).Where(x => x.AppUserId == userInDb.Id).ToArrayAsync(),
             Token = accessToken,
-        });
+        };
+        return Ok(Auth);
     }
     
     [HttpPost]

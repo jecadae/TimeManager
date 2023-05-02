@@ -15,7 +15,7 @@ builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", builder 
         .AllowAnyOrigin()
     )
 );
-builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=UserBase;Username=postgres;Password=1234;Port=5432"));
+builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=Api;Username=postgres;Password=1234;Port=5432"));
 builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddControllers();
 
@@ -99,5 +99,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

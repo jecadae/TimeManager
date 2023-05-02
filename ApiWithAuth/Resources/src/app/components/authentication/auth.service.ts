@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http'
-import { map } from 'rxjs/operators';
+import { map, observeOn } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +25,17 @@ export class AuthService {
   }
 
   logUser(user: any) {
+    // return new Observable<boolean>((observer)=>{
+    //   this.http.post<any>(this.)
+    // })
+
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
+    headers.append('accept', 'text/plain')
     return this.http.post(
       'https://localhost:44393/Auth/login',
       user,
-      {headers: headers}).pipe(map((response:any) => response.json()));
+      {headers: headers}).pipe((response:any) => response.json());
   }
   
   passwordReset(user: any) {
