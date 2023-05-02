@@ -12,7 +12,7 @@ public class AppQuest
     public long Id { get; set; }
     [ForeignKey("AppPlan")]
     [JsonIgnore]
-    public string AppUserEmail { get; set; }
+    public int AppPlanId { get; set; }
     public string? Discription{ get; set; }
     public DateTime DeadLine { get; set; }
     private bool priv { get; set; } = false;

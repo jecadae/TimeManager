@@ -1,4 +1,6 @@
+using ApiWithAuth.DTOs;
 using ApiWithAuth.Entity;
+using ApiWithAuth.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +13,12 @@ namespace ApiWithAuth.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly UserManager<AppUser> _userManager;
-    private readonly UsersContext _context;
-    private readonly TokenService _tokenService;
+    private readonly IUserService _userService;
 
-    public AuthController(UserManager<AppUser> userManager, UsersContext context, TokenService tokenService)
+    public AuthController(UserManager<AppUser> userManager,IUserService userService)
     {
         _userManager = userManager;
-        _context = context;
-        _tokenService = tokenService;
+        _userService = userService;
     }
     
     [HttpPost]
@@ -34,8 +34,15 @@ public class AuthController : ControllerBase
             new AppUser { UserName = request.Email, Email = request.Email,
                 FirstName = request.FirstName,LastName = request.LastName,Patronymic = request.Patronymic}, request.Password
         );
+        if (result.Succeeded)
+        {
+            return Ok();
+        }
         
-        return Ok();
+        foreach (var error in result.Errors) { 
+            ModelState.AddModelError(error.Code, error.Description); 
+        }
+        return BadRequest(ModelState);
     }
     
     [HttpPost]
@@ -46,71 +53,23 @@ public class AuthController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-        
-        var managedUser = await _userManager.FindByEmailAsync(request.Email);
-        
-        if (managedUser == null)
-        {
-            return BadRequest("Bad credentials");
-        }
-
-        var isPasswordValid = await _userManager.CheckPasswordAsync(managedUser, request.Password);
-
-        if (!isPasswordValid)
-        {
-            return BadRequest("Bad credentials");
-        }
-        
-        var userInDb = _context.Users.FirstOrDefault(u => u.Email == request.Email);
-        if (userInDb is null)
-            return Unauthorized();
-        
-        var accessToken = _tokenService.CreateToken(userInDb);
-        await _context.SaveChangesAsync();
-        Console.WriteLine($"{userInDb.Email},{accessToken}");
-        var Auth = new AuthResponse
-        {
-            Email = userInDb.Email,
-            Token = accessToken,
-        };
-        return Ok(Auth);
+        return Ok(await _userService.loginAsync(request));
     }
     
     [HttpPost]
     [Route("RefreshPass")]
-    public async Task<ActionResult<AuthResponse>> RefreshPass([FromBody] RefreshRequest request)
+    public async Task<ActionResult<AuthResponse>> RefreshPass(RefreshRequest request)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);  
         }
         
-        var managedUser = await _userManager.FindByEmailAsync(request.Email);
+        var accessToken =await _userService.PasswordUpdateAsync(request);
         
-        if (managedUser == null)
-        {
-            return BadRequest("Bad credentials");
-        }
-        
-        var isPasswordValid = await _userManager.CheckPasswordAsync(managedUser, request.Password);
-        
-        if (!isPasswordValid)
-        {
-            return BadRequest("Bad credentials");
-        }
-
-        var result = await _userManager.ChangePasswordAsync(managedUser,request.Password,request.NewPassword);
-        
-        var userInDb = _context.Users.FirstOrDefault(u => u.Email == request.Email);
-        if (userInDb is null)
-            return Unauthorized();
-        
-        var accessToken = _tokenService.CreateToken(userInDb);
-        await _context.SaveChangesAsync();
-     
         return Ok(new AuthResponse
         {
-            Email = userInDb.Email,
+            Email = request.Email,
             Token = accessToken,
         });
     }
@@ -118,17 +77,9 @@ public class AuthController : ControllerBase
     [HttpPost]
     [Route("rename")]
     [Authorize]
-    public async Task<ActionResult<AuthResponse>> Rename(string email, string name,string famile, string patronymic)
+    public async Task<IActionResult> Rename(RenameRequest request)
     {
-        var userInDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-        if (userInDb is null)
-        {
-            return NotFound();
-        }
-        userInDb.FirstName = name;
-        userInDb.Patronymic = patronymic;
-        userInDb.LastName = famile;
-        await _context.SaveChangesAsync();
+        await _userService.RenameUserAsync(request);
         return Ok();
     }
 
@@ -136,12 +87,7 @@ public class AuthController : ControllerBase
     [Route("ForgotPass")]
     public async Task<ActionResult<AuthResponse>> ForgotPass(string email)
     {
-        var userInDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-        string resetToken = await _userManager.GeneratePasswordResetTokenAsync(userInDb);
-       //var message = new 
-        Console.WriteLine(resetToken);
+        await _userService.ForgotPasswordAsync(email);
         return Ok();
     }
-
-
 }

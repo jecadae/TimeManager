@@ -1,6 +1,8 @@
 using System.Text;
 using ApiWithAuth;
 using ApiWithAuth.Entity;
+using ApiWithAuth.Interfaces;
+using ApiWithAuth.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,7 @@ builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", builder 
 );
 builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=Api;Username=postgres;Password=1234;Port=5432"));
 builder.Services.AddScoped<TokenService, TokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

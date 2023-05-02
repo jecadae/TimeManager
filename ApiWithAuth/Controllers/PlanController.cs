@@ -27,10 +27,6 @@ public class PlanController: ControllerBase
     [Route("Create")]
     public async Task<IActionResult> CreatePlanAsync(AppPlan request,string email)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);  
-        }
         var usid= await _context.Users.FirstOrDefaultAsync(x => x.Email==email);
         request.AppUserId = usid.Id;
         await _context.AppPlans.AddAsync(request);
@@ -42,7 +38,7 @@ public class PlanController: ControllerBase
 
 
     [HttpGet]
-    [Route("GetUsersPlans{email}")]
+    [Route("GetUserPlans{email}")]
     public async Task<IActionResult> GetUsersPlansAsync(string email)
     {
         if (!ModelState.IsValid)
@@ -57,8 +53,8 @@ public class PlanController: ControllerBase
 
 
     [HttpPut]
-    [Route("PutUserPlans/{id}")]
-    public async Task<IActionResult> UpdatePlaneAsync(AppPlan request, long id)
+    [Route("PutUserPlan/{id}")]
+    public async Task<IActionResult> UpdatePlanAsync(AppPlan request, long id)
     {
         var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == id);
         if (result==null)

@@ -46,9 +46,7 @@ public class UserIconManager: ControllerBase
     {
         var userid = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
         var icon = await _context.AppUserIcons.FirstOrDefaultAsync(ic => ic.AppUserId== userid.Id);
-        var stream = new MemoryStream(icon.ImageArray);
-        IFormFile file = new FormFile(stream, 0, icon.ImageArray.Length, "name", "fileName");
-        return Ok(file.ContentDisposition);
+        return Ok(icon.ImageArray);
     }
     
     [HttpPut]
@@ -62,6 +60,6 @@ public class UserIconManager: ControllerBase
         var updatedIcon = await _context.AppUserIcons.FirstOrDefaultAsync(ic => ic.AppUserId== userid.Id);
         updatedIcon.ImageArray = bytes;
         await _context.SaveChangesAsync();
-        return Ok(file.ContentDisposition);
+        return Ok(bytes);
     }
 }

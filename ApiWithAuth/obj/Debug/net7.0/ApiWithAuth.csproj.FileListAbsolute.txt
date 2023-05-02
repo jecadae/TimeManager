@@ -435,3 +435,6 @@ D:\WebApplication1\WebApplication1\ApiWithAuth\obj\Debug\net7.0\refint\ApiWithAu
 D:\WebApplication1\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.pdb
 D:\WebApplication1\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ApiWithAuth.genruntimeconfig.cache
 D:\WebApplication1\WebApplication1\ApiWithAuth\obj\Debug\net7.0\ref\ApiWithAuth.dll
+D:\WebApplication1\WebApplication1\ApiWithAuth\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+D:\WebApplication1\WebApplication1\ApiWithAuth\bin\Debug\net7.0\MailKit.dll
+D:\WebApplication1\WebApplication1\ApiWithAuth\bin\Debug\net7.0\MimeKit.dll
