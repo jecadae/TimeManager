@@ -9,7 +9,7 @@ public class AppQuest
 {
     [Key]
     [JsonIgnore]
-    public long Id { get; set; }
+    public int Id { get; set; }
     [ForeignKey("AppPlan")]
     [JsonIgnore]
     public int AppPlanId { get; set; }

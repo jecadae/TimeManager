@@ -54,7 +54,7 @@ public class PlanController: ControllerBase
 
     [HttpPut]
     [Route("PutUserPlan/{id}")]
-    public async Task<IActionResult> UpdatePlanAsync(AppPlan request, long id)
+    public async Task<IActionResult> UpdatePlanAsync(AppPlan request, int id)
     {
         var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == id);
         if (result==null)
@@ -69,7 +69,7 @@ public class PlanController: ControllerBase
 
     [HttpDelete]
     [Route("DeleteUserPlans{id}")]
-    public async Task<IActionResult> RemovePlanAsync(long id)
+    public async Task<IActionResult> RemovePlanAsync(int id)
     {
         var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == id);
         _context.Remove(result);

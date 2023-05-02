@@ -3,7 +3,7 @@
 public class AppQuestDto
 {
 
-    public long Id { get; set; }
+    public int Id { get; set; }
     public string? Discription{ get; set; }
     public DateTime DeadLine { get; set; }
     private bool priv { get; set; } = false;

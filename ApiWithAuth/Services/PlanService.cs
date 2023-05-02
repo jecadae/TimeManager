@@ -37,9 +37,25 @@ public class PlanService : IPlanService
         await _context.SaveChangesAsync();
     }
 
-    
-    
-    
+    public async Task RemovePlanAsync(int planId)
+    {
+        var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == planId);
+        _context.Remove(result);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<AppPlan> UpdatePlanAsync(AppPlan item, int planId)
+    {
+        var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == planId);
+        if (result==null)
+            throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
+        result = item;
+        _context.Entry(result).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return (result);
+    }
+
+
 
 
 
