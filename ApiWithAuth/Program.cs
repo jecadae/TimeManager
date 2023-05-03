@@ -1,6 +1,8 @@
 using System.Text;
-using ApiWithAuth;
+using ApiWithAuth.Domain;
 using ApiWithAuth.Entity;
+using ApiWithAuth.Interfaces;
+using ApiWithAuth.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,14 +11,15 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", builder => builder
+builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", option => option
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowAnyOrigin()
     )
 );
-builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=UserBase;Username=postgres;Password=1234;Port=5432"));
+builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=Api;Username=postgres;Password=1234;Port=5432"));
 builder.Services.AddScoped<TokenService, TokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -99,5 +102,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

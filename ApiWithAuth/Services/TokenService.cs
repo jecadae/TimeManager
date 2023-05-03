@@ -1,0 +1,69 @@
+using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using ApiWithAuth.Entity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+
+namespace ApiWithAuth.Services
+{
+    public class TokenService
+    {
+        private const int ExpirationMinutes = 10080;
+        public string CreateToken(AppUser user)
+        {
+            var expiration = DateTime.UtcNow.AddMinutes(ExpirationMinutes);
+
+            var token = CreateJwtToken(
+                CreateClaims(user),
+                CreateSigningCredentials(),
+                expiration
+            );
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            return tokenHandler.WriteToken(token);
+        }
+
+        private JwtSecurityToken CreateJwtToken(List<Claim> claims, SigningCredentials credentials,
+            DateTime expiration) =>
+            new(
+                "apiWithAuthBackend",
+                "apiWithAuthBackend",
+                claims,
+                expires: expiration,
+                signingCredentials: credentials
+            );
+
+        private List<Claim> CreateClaims(AppUser user)
+        {
+            try
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, "TokenForTheApiWithAuth"),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)),
+                    new Claim(ClaimTypes.Email, user.Email)
+                };
+                return claims;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        private SigningCredentials CreateSigningCredentials()
+        {
+            return new SigningCredentials(
+                new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes("!SomethingSecret!")
+                ),
+                SecurityAlgorithms.HmacSha256
+            );
+        }
+    }
+}
