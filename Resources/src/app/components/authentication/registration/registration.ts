@@ -94,18 +94,22 @@ export class RegistrationComponent implements OnInit {
       errCount++
     }
 
-    if (errCount > 0) return false
-
+    if (errCount > 0) return false;
+    
+  
     this.auth.regUser(user).subscribe(data => {
       if (!data.succes) { 
         alert('Ошибка регистрации, поторите попытку позже')
       }
       else {
         alert('Регистрация прошла успешно')
-        this.router.navigate(['http://localhost:4200/login']);
       }
     })
     return
   }
+  GoLogin(){
+    this.router.navigate(['http://localhost:4200/login']);
+  }
 }
+
 
