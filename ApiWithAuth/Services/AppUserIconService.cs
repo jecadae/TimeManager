@@ -15,7 +15,7 @@ public class AppUserIconService: IAppUserIconService
     }
     
     
-    public async Task AddArrayFromPicturesAsync(IFormFile file,string email)
+    public async Task AddArrayFromPicturesAsync(string email,IFormFile file)
     {
         
         var userId = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
@@ -42,7 +42,7 @@ public class AppUserIconService: IAppUserIconService
         return (icon.ImageArray);
     }
 
-    public async Task<byte[]> UpdateUserImageArrayAsync(IFormFile file, string email)
+    public async Task<byte[]> UpdateUserImageArrayAsync(string email,IFormFile file )
     {
         var userId = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
         if (userId == null)

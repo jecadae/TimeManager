@@ -4,8 +4,7 @@ public class AppPlanDto
 {
         
     public string? Name { get; set; }
-    public int? Id { get; set; }
-    public string AppUserEmail { get; set; }
-    public bool done { get; set; } = false;
-    public IList<AppQuestDto> Quests { get; set; } = new List<AppQuestDto>();
+    public int? Id { get; set; } = null;
+    public bool done { get; set; } 
+    public IList<AppQuestDto> QuestsDto { get; set; } = new List<AppQuestDto>();
 }

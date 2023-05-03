@@ -2,7 +2,7 @@
 
 public interface IAppUserIconService
 {
-    Task AddArrayFromPicturesAsync(IFormFile file,string email);
+    Task AddArrayFromPicturesAsync(string email,IFormFile file);
     Task<byte[]> GetImageArrayAsync(string email);
-    Task<byte[]> UpdateUserImageArrayAsync(IFormFile file, string email);
+    Task<byte[]> UpdateUserImageArrayAsync(string email,IFormFile file );
 }

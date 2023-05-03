@@ -9,7 +9,7 @@ public class PlanService : IPlanService
 {
     private readonly UsersContext _context;
 
-    PlanService(UsersContext usersContext)
+    public PlanService(UsersContext usersContext)
     {
         _context = usersContext;
     }
@@ -38,6 +38,11 @@ public class PlanService : IPlanService
         if (userId == null)
             throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
         item.AppUserId = userId.Id;
+        item.Id = null;
+        foreach (var itemQuest in item.Quests)
+        {
+            itemQuest.Id = null;
+        }
         await _context.AppPlans.AddAsync(item);
         await _context.SaveChangesAsync();
     }
@@ -54,7 +59,9 @@ public class PlanService : IPlanService
         var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == planId);
         if (result==null)
             throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
-        result = item;
+        result.done = item.done;
+        result.Name = item.Name;
+        result.Quests = item.Quests;
         _context.Entry(result).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return (result);

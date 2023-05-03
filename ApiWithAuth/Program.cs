@@ -20,7 +20,9 @@ builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", option =
 builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql("Host=localhost;Database=Api;Username=postgres;Password=1234;Port=5432"));
 builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<IPlanService, PlanService>();
+builder.Services.AddScoped<IAppUserIconService, AppUserIconService>();
+builder.Services.AddAutoMapper(typeof(AppMappingProfile));
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

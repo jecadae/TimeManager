@@ -8,8 +8,10 @@ public class AppMappingProfile : Profile
 {
     public AppMappingProfile()
     {
-        CreateMap<AppPlan, AppPlanDto>().ReverseMap();
         CreateMap<AppQuest, AppQuestDto>().ReverseMap();
+        CreateMap<AppPlan, AppPlanDto>()
+            .ForMember(dest=>dest.QuestsDto,a=>a.MapFrom(src=> src.Quests))
+            .ReverseMap();
         CreateMap<AppUser, AppUserDto>().ReverseMap();
     }
 }

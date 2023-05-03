@@ -1,13 +1,7 @@
-using ApiWithAuth.Domain;
-using ApiWithAuth.Entity;
 using ApiWithAuth.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 namespace ApiWithAuth.Controllers;
-
-
-
-
 
 [ApiController]
 [Route("/[controller]")]
@@ -24,20 +18,21 @@ public class UserIconController: ControllerBase
     [Route("AddUserIcon{email}")]
     public async Task<IActionResult> AddUserIconAsync(string email, IFormFile file)
     {
-        _
+        await _appUserIconService.AddArrayFromPicturesAsync(email, file);
+        return Ok();
     }
 
     [HttpGet]
     [Route("GetUserIcon{email}")]
     public async Task<IActionResult> GetUserIconAsync(string email)
     {
-
+        return Ok(await _appUserIconService.GetImageArrayAsync(email));
     }
 
     [HttpPut]
     [Route("PutUserIcon{email}")]
     public async Task<IActionResult> PutUserIconAsync(string email, IFormFile file)
     {
-        
+        return Ok(await _appUserIconService.UpdateUserImageArrayAsync(email,file));
     }
 }

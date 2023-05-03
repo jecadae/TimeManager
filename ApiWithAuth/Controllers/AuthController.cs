@@ -1,6 +1,7 @@
 using ApiWithAuth.DTOs;
 using ApiWithAuth.Entity;
 using ApiWithAuth.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,13 @@ public class AuthController : ControllerBase
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly IUserService _userService;
+    private readonly IMapper _mapper;
 
-    public AuthController(UserManager<AppUser> userManager,IUserService userService)
+    public AuthController(UserManager<AppUser> userManager,IUserService userService,IMapper mapper )
     {
         _userManager = userManager;
         _userService = userService;
+        _mapper = mapper;
     }
     
     [HttpPost]
@@ -89,7 +92,7 @@ public class AuthController : ControllerBase
     [Authorize]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _userService.GetAllUsers());
+        return Ok(_mapper.Map<List<AppUserDto>>(await _userService.GetAllUsers()));
     }
     
     [HttpGet]
@@ -97,7 +100,7 @@ public class AuthController : ControllerBase
     [Authorize]
     public async Task<IActionResult> GetUser(string email)
     {
-        return Ok(await _userService.GetUserByEmail(email));
+        return Ok(_mapper.Map<AppUserDto>(await _userService.GetUserByEmail(email)));
     }
     
 

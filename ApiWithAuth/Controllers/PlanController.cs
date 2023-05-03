@@ -1,5 +1,8 @@
+using ApiWithAuth.DTOs;
 using ApiWithAuth.Entity;
 using ApiWithAuth.Interfaces;
+using ApiWithAuth.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,51 +14,55 @@ namespace ApiWithAuth.Controllers;
 public class PlanController : ControllerBase
 {
     private readonly IPlanService _planService;
+    private readonly IMapper _mapper;
     
-    public PlanController(IPlanService planService)
+    public PlanController(IPlanService planService, IMapper mapper)
     {
         _planService = planService;
+        _mapper = mapper;
     }
 
     [HttpGet]
     [Route("GetPlansThisUser{email}")]
     public async Task<IActionResult> GetUsersPlansAsync(string email)
     {
-        return Ok(await _planService.GetAllPlansThisUserAsync(email));
+        return Ok(_mapper.Map<List<AppPlanDto>>(await _planService.GetAllPlansThisUserAsync(email)));
     }
 
     [HttpGet]
     [Route("GetAllUsersPlans")]
     public async Task<IActionResult> GetAllUsersPlansAsync()
     {
-        return Ok(await _planService.GetAllPlansAsync());
+        return Ok( _mapper.Map<List<AppPlanDto>>(await _planService.GetAllPlansAsync()));
     }
 
     [HttpGet]
     [Route("GetPlanById{PlanId}")]
     public async Task<IActionResult> GetUserPlanByIdAsync(int planId)
     {
-        return Ok(await _planService.GetPlanByIdAsync(planId));
+        return Ok(_mapper.Map<AppPlanDto>(await _planService.GetPlanByIdAsync(planId)));
     }
 
     [HttpPost]
     [Route("Create")]
-    public IActionResult CreatePlanAsync(AppPlan request, string email)
+    public async Task<IActionResult> CreatePlanAsync(AppPlanDto request, string email)
     {
-        return Ok(_planService.CreatePlanAsync(request, email));
+        await _planService.CreatePlanAsync(_mapper.Map<AppPlan>(request), email);
+        return Ok();
     }
 
     [HttpPut]
     [Route("PutUserPlan/{id}")]
-    public async Task<IActionResult> UpdatePlanAsync(AppPlan request, int id)
+    public async Task<IActionResult> UpdatePlanAsync(AppPlanDto request, int id)
     {
-        return Ok(await _planService.UpdatePlanAsync(request, id));
+        return Ok(await _planService.UpdatePlanAsync(_mapper.Map<AppPlan>(request), id));
     }
 
     [HttpDelete]
     [Route("DeleteUserPlans{id}")]
-    public IActionResult RemovePlanAsync(int id)
+    public async Task<IActionResult> RemovePlanAsync(int id)
     {
-        return Ok(_planService.RemovePlanAsync(id));
+        await _planService.RemovePlanAsync(id);
+        return Ok();
     }
 }

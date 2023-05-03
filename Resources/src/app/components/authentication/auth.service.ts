@@ -21,10 +21,13 @@ export class AuthService {
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
     headers.append('accept', 'value')
-    return this.http.post(
+    this.http.post(
       'https://localhost:44393/Auth/register',
       user,
       {headers: headers}).pipe(map((response:any) => response));
+      console.log(Response);
+      return Response;
+      
   }
 
   logUser(user: any) {
