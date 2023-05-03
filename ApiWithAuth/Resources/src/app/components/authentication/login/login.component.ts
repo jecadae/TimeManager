@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'
-import {CheckDataService} from '../check-data.service';
+import { CheckDataService } from '../check-data.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
   ) { }
 
-  
+
   email: string = '';
   password: string = '';
 
@@ -41,13 +41,14 @@ export class LoginComponent implements OnInit {
     if (!this.checkLogin.checkNullEmail(user.email)) {
       this.emailErrLabel = 'Email не введен'
       errCount++;
-     } else if (!this.checkLogin.checkEmail(user.email)) {
+    } else if (!this.checkLogin.checkEmail(user.email)) {
       this.emailErrLabel = 'Некорректный email'
       errCount++;
-     }
+    }
     if (!this.checkLogin.checkNullPassword(user.password)) {
       this.errLabel = 'Пароль не введен'
-      errCount++; }
+      errCount++;
+    }
 
     if (errCount > 0) return false
 
@@ -55,20 +56,18 @@ export class LoginComponent implements OnInit {
       if (!data.succes) {
         this.errLabel = 'Неверный email или пароль'
       }
-      else 
-      this.router.navigate(['/home-page']);
+      else
+        this.router.navigate(['/home-page']);
       this.auth.platformUser(data.token, data.user)
     })
     return
-}
+  }
 
 
   ngOnInit(): void {
 
-    this.http.post('https://localhost:44393/Auth/register', {headers: this.email}).pipe(map((response:any) => response.json()));
-    //this.loginForm = new FormGroup(controls: {
-    //    'email': new FormControl(formState: '', ValidatorOrOpts: [Validators.required, Validators.email]),
-    //    'password': new FormControl(formState: '', ValidatorOrOpts: [Validators.required, Validators.pattern(pattern: )])
-    //})
+    // РУБРИКА ЭКСПЕРИМЕНТЫ
+    //this.http.post('https://localhost:44393/Auth/register', {headers: this.email}).pipe(map((response:any) => response.json()));
+
   }
 }

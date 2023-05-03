@@ -37,8 +37,8 @@ export class ModalWindowComponent implements OnInit, AfterViewInit {
   choicePrivacy: string[] = ['Скрыть задачу', 'Сделать задачу видимой'];
 
   checkDeadline: boolean = false;
-  nameGoal: any = undefined;
-  taskName: any = undefined;
+  nameGoal: string = '';
+  taskName: string = '';
   deadline: any = undefined;
   dayOfWeek: any = [];
   frequency: any = undefined;
@@ -54,7 +54,6 @@ export class ModalWindowComponent implements OnInit, AfterViewInit {
         frequency: this.frequency,
         time: this.time
       }
-      // need to create constructor for object "task"
     }
   }
 
