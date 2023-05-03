@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
       }
       else 
       this.auth.platformUser(data.token, data.user)
-      this.router.navigate(['localhost:4200/home-page']);
+      this.router.navigate(['http://localhost:4200/home-page']);
       })
     return
   }
