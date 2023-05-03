@@ -97,12 +97,12 @@ export class RegistrationComponent implements OnInit {
     if (errCount > 0) return false;
     
   
-    this.auth.regUser(user).subscribe((data: any) => {
-      if (!data.succes) { 
-        alert('Ошибка регистрации, поторите попытку позже')
+    this.auth.regUser(user).subscribe(data => {
+      if (data.succes) { 
+        alert('Регистрация прошла успешно')
       }
       else {
-        alert('Регистрация прошла успешно')
+        alert('Ошибка!')
       }
     })
     return
