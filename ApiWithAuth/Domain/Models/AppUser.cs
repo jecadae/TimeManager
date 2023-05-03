@@ -11,7 +11,6 @@ public class AppUser: IdentityUser<int>
     public string? LastName{get;set;}
     public string? Patronymic{get;set;}
     public int? AppUserIconsId{get;set;}
-    [JsonIgnore] 
     public List<AppPlan>? UserPlans { get; set; } = new List<AppPlan>();
     public AppUserIcon? AppUserIcon { get; set; }
     

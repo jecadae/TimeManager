@@ -21,8 +21,10 @@ public class PlanService : IPlanService
 
     public async Task<List<AppPlan>> GetAllPlansThisUserAsync(string email )
     {
-        var userid = await _context.Users.FirstOrDefaultAsync( x => x.Email==email);
-        return await _context.AppPlans.AsNoTracking().Include(x => x.Quests).Where(x => x.AppUserId == userid.Id).ToListAsync();
+        var userId = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
+        if (userId == null)
+            throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
+        return await _context.AppPlans.AsNoTracking().Include(x => x.Quests).Where(x => x.AppUserId == userId.Id).ToListAsync();
     }
 
     public async Task<AppPlan?> GetPlanByIdAsync(int planId)
@@ -32,8 +34,10 @@ public class PlanService : IPlanService
 
     public async Task CreatePlanAsync(AppPlan item, string email)
     {
-        var usid= await _context.Users.FirstOrDefaultAsync(x => x.Email==email);
-        item.AppUserId = usid.Id;
+        var userId = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
+        if (userId == null)
+            throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
+        item.AppUserId = userId.Id;
         await _context.AppPlans.AddAsync(item);
         await _context.SaveChangesAsync();
     }

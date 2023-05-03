@@ -2,7 +2,7 @@
 using ApiWithAuth.Entity;
 using AutoMapper;
 
-namespace ApiWithAuth;
+namespace ApiWithAuth.Domain;
 
 public class AppMappingProfile : Profile
 {
@@ -10,5 +10,6 @@ public class AppMappingProfile : Profile
     {
         CreateMap<AppPlan, AppPlanDto>().ReverseMap();
         CreateMap<AppQuest, AppQuestDto>().ReverseMap();
+        CreateMap<AppUser, AppUserDto>().ReverseMap();
     }
 }
