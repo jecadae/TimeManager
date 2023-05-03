@@ -1,4 +1,5 @@
-﻿using ApiWithAuth.Entity;
+﻿using ApiWithAuth.Domain;
+using ApiWithAuth.Entity;
 using ApiWithAuth.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,7 +41,7 @@ public class PlanService : IPlanService
     public async Task RemovePlanAsync(int planId)
     {
         var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == planId);
-        _context.Remove(result);
+        _context.Remove<AppPlan>(result);
         await _context.SaveChangesAsync();
     }
 

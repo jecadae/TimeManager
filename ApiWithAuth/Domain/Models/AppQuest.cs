@@ -18,7 +18,7 @@ public class AppQuest
     private bool priv { get; set; } = false;
     public bool Status { get; set; } = false;
     
-    
+    public AppPlan? AppPlan{ get; set; }
     public List<string> Links { get; set; } = new List<string>();
 
 

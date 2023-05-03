@@ -1,8 +1,7 @@
+using ApiWithAuth.Domain;
 using ApiWithAuth.Entity;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 namespace ApiWithAuth.Controllers;
 
 
@@ -14,7 +13,6 @@ namespace ApiWithAuth.Controllers;
 public class UserIconManager: ControllerBase
 {
     private readonly UsersContext _context;
-
 
     public UserIconManager( UsersContext context)
     {
@@ -42,7 +40,7 @@ public class UserIconManager: ControllerBase
 
     [HttpGet]
     [Route("GetUserIcon{email}")]
-    public async Task<IActionResult> SetUserIconAsync(string email)
+    public async Task<IActionResult> GetUserIconAsync(string email)
     {
         var userid = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
         var icon = await _context.AppUserIcons.FirstOrDefaultAsync(ic => ic.AppUserId== userid.Id);

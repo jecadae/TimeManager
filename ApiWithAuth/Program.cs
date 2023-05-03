@@ -1,5 +1,5 @@
 using System.Text;
-using ApiWithAuth;
+using ApiWithAuth.Domain;
 using ApiWithAuth.Entity;
 using ApiWithAuth.Interfaces;
 using ApiWithAuth.Services;
@@ -11,7 +11,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", builder => builder
+builder.Services.AddCors(options => options.AddPolicy("AllowLocalhost", option => option
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowAnyOrigin()

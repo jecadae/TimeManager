@@ -4,7 +4,6 @@ using ApiWithAuth.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ApiWithAuth.Controllers;
 
@@ -49,24 +48,18 @@ public class AuthController : ControllerBase
     [Route("login")]
     public async Task<IActionResult> Authenticate(AuthRequest request)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-        return Ok(await _userService.loginAsync(request));
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        return Ok(await _userService.LoginAsync(request));
     }
     
     [HttpPost]
     [Route("RefreshPass")]
     public async Task<ActionResult<AuthResponse>> RefreshPass(RefreshRequest request)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);  
-        }
-        
+        if (!ModelState.IsValid) 
+            return BadRequest(ModelState);
+
         var accessToken =await _userService.PasswordUpdateAsync(request);
-        
         return Ok(new AuthResponse
         {
             Email = request.Email,
@@ -90,4 +83,22 @@ public class AuthController : ControllerBase
         await _userService.ForgotPasswordAsync(email);
         return Ok();
     }
+    
+    [HttpGet]
+    [Route("GetAllUsers")]
+    [Authorize]
+    public async Task<IActionResult> GetAll()
+    {
+        return Ok(await _userService.GetAllUsers());
+    }
+    
+    [HttpGet]
+    [Route("GetUserByEmail{email}")]
+    [Authorize]
+    public async Task<IActionResult> GetUser(string email)
+    {
+        return Ok(await _userService.GetUserByEmail(email));
+    }
+    
+
 }

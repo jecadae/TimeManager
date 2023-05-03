@@ -1,8 +1,10 @@
-﻿using ApiWithAuth.DTOs;
+﻿using ApiWithAuth.Domain;
+using ApiWithAuth.DTOs;
 using ApiWithAuth.Entity;
 using ApiWithAuth.Interfaces;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MimeKit;
 
 namespace ApiWithAuth.Services;
@@ -22,7 +24,7 @@ public class UserService: IUserService
 
 
 
-    public async Task<AuthResponse> loginAsync(AuthRequest request)
+    public async Task<AuthResponse> LoginAsync(AuthRequest request)
     {
                 
         var managedUser = await _userManager.FindByEmailAsync(request.Email);
@@ -85,6 +87,17 @@ public class UserService: IUserService
         userInDb.LastName = request.LastName;
         await _context.SaveChangesAsync();
     }
+
+    public async Task<AppUser?> GetUserByEmail(string email)
+    {
+        return await _userManager.FindByEmailAsync(email);
+    }
+
+    public async Task<List<AppUser>> GetAllUsers()
+    {
+        return await _userManager.Users.AsNoTracking().ToListAsync();
+    }
+
 
     public async Task ForgotPasswordAsync(string email)
     {
