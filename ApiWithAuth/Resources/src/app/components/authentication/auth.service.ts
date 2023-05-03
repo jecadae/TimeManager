@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post(
       'https://localhost:44393/Auth/register',
       user,
-      {headers: headers}).pipe(map((response:any) => response.json()));
+      {headers: headers}).pipe(map((response:any) => response));
   }
 
   logUser(user: any) {
