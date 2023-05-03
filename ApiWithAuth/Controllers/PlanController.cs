@@ -1,86 +1,61 @@
 using ApiWithAuth.Entity;
+using ApiWithAuth.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-
-using Microsoft.EntityFrameworkCore;
-
-namespace ApiWithAuth.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-
+namespace ApiWithAuth.Controllers;
 
 [Authorize]
 [ApiController]
 [Route("/[controller]")]
-public class PlanController: ControllerBase
-{    
-
-    private readonly UsersContext _context;
-
-
-    public PlanController( UsersContext context)
+public class PlanController : ControllerBase
+{
+    private readonly IPlanService _planService;
+    
+    public PlanController(IPlanService planService)
     {
-        _context = context;
+        _planService = planService;
     }
 
+    [HttpGet]
+    [Route("GetPlansThisUser{email}")]
+    public async Task<IActionResult> GetUsersPlansAsync(string email)
+    {
+        return Ok(await _planService.GetAllPlansThisUserAsync(email));
+    }
+
+    [HttpGet]
+    [Route("GetAllUsersPlans")]
+    public async Task<IActionResult> GetAllUsersPlansAsync()
+    {
+        return Ok(await _planService.GetAllPlansAsync());
+    }
+
+    [HttpGet]
+    [Route("GetPlanById{PlanId}")]
+    public async Task<IActionResult> GetUserPlanByIdAsync(int planId)
+    {
+        return Ok(await _planService.GetPlanByIdAsync(planId));
+    }
 
     [HttpPost]
     [Route("Create")]
-    public async Task<IActionResult> CreatePlanAsync(AppPlan request,string email)
+    public IActionResult CreatePlanAsync(AppPlan request, string email)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);  
-        }
-        var usid= await _context.Users.FirstOrDefaultAsync(x => x.Email==email);
-        request.AppUserId = usid.Id;
-        await _context.AppPlans.AddAsync(request);
-        await _context.SaveChangesAsync();
-        return Ok();
-        
+        return Ok(_planService.CreatePlanAsync(request, email));
     }
-
-
-
-    [HttpGet]
-    [Route("GetUsersPlans{email}")]
-    public async Task<IActionResult> GetUsersPlansAsync(string email)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);  
-        }
-
-        var userid = await _context.Users.FirstOrDefaultAsync( x => x.Email==email);
-        var result = await _context.AppPlans.Include(x => x.Quests).Where(x => x.AppUserId == userid.Id).ToArrayAsync();
-        return Ok(result);
-    }
-
 
     [HttpPut]
-    [Route("PutUserPlans/{id}")]
-    public async Task<IActionResult> UpdatePlaneAsync(AppPlan request, long id)
+    [Route("PutUserPlan/{id}")]
+    public async Task<IActionResult> UpdatePlanAsync(AppPlan request, int id)
     {
-        var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == id);
-        if (result==null)
-        {
-            return BadRequest(NotFound());  
-        }
-
-        _context.AppPlans.Update(request);
-        await _context.SaveChangesAsync();
-        return (Ok(result));
+        return Ok(await _planService.UpdatePlanAsync(request, id));
     }
 
     [HttpDelete]
     [Route("DeleteUserPlans{id}")]
-    public async Task<IActionResult> RemovePlanAsync(long id)
+    public IActionResult RemovePlanAsync(int id)
     {
-        var result = await _context.AppPlans.Include(x => x.Quests).FirstOrDefaultAsync(x => x.Id == id);
-        _context.Remove(result);
-        await _context.SaveChangesAsync();
-        return Ok();
+        return Ok(_planService.RemovePlanAsync(id));
     }
 }
-
-
-

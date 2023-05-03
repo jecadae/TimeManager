@@ -6,7 +6,7 @@ using ApiWithAuth.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
-namespace ApiWithAuth
+namespace ApiWithAuth.Services
 {
     public class TokenService
     {

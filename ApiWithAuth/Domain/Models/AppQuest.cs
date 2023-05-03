@@ -9,16 +9,16 @@ public class AppQuest
 {
     [Key]
     [JsonIgnore]
-    public long Id { get; set; }
+    public int Id { get; set; }
     [ForeignKey("AppPlan")]
     [JsonIgnore]
-    public string AppUserEmail { get; set; }
+    public int AppPlanId { get; set; }
     public string? Discription{ get; set; }
     public DateTime DeadLine { get; set; }
     private bool priv { get; set; } = false;
     public bool Status { get; set; } = false;
     
-    
+    public AppPlan? AppPlan{ get; set; }
     public List<string> Links { get; set; } = new List<string>();
 
 
