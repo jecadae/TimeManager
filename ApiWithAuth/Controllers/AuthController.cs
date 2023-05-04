@@ -36,6 +36,7 @@ public class AuthController : ControllerBase
             new AppUser { UserName = request.Email, Email = request.Email,
                 FirstName = request.FirstName,LastName = request.LastName,Patronymic = request.Patronymic}, request.Password
         );
+        
         if (result.Succeeded)
         {
             return Ok();
@@ -103,5 +104,4 @@ public class AuthController : ControllerBase
         return Ok(_mapper.Map<AppUserDto>(await _userService.GetUserByEmail(email)));
     }
     
-
 }

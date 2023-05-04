@@ -97,14 +97,7 @@ export class RegistrationComponent implements OnInit {
     if (errCount > 0) return false;
     
   
-    this.auth.regUser(user).subscribe(data => {
-      if (data.succes) { 
-        alert('Регистрация прошла успешно')
-      }
-      else {
-        alert('Ошибка!')
-      }
-    })
+    this.auth.regUser(user)
     return
   }
   GoLogin(){

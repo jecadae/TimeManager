@@ -21,13 +21,13 @@ export class AuthService {
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
     headers.append('accept', 'value')
-    this.http.post(
+    return this.http.post(
       'https://localhost:44393/Auth/register',
       user,
-      {headers: headers}).pipe(map((response:any) => response));
-      console.log(Response);
-      return Response;
-      
+      {observe: 'response'}).subscribe({
+        next:()=>{        alert('Регистрация прошла успешно')},
+        error:()=>{        alert('Ошибка!')},
+      });
   }
 
   logUser(user: any) {

@@ -35,7 +35,7 @@ public class UsersContext : IdentityUserContext<AppUser,int>
             .HasMany(u => u.Quests)
             .WithOne(i => i.AppPlan)
             .HasForeignKey(c => c.AppPlanId)
-            .IsRequired(false);
+            .IsRequired(false).OnDelete(DeleteBehavior.Cascade);
     }
 
     public DbSet<AppPlan> AppPlans{ get; set; }

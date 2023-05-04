@@ -23,7 +23,7 @@ public class PlanController : ControllerBase
     }
 
     [HttpGet]
-    [Route("GetPlansThisUser{email}")]
+    [Route("GetPlansThisUser/{email}")]
     public async Task<IActionResult> GetUsersPlansAsync(string email)
     {
         return Ok(_mapper.Map<List<AppPlanDto>>(await _planService.GetAllPlansThisUserAsync(email)));
@@ -37,7 +37,7 @@ public class PlanController : ControllerBase
     }
 
     [HttpGet]
-    [Route("GetPlanById{PlanId}")]
+    [Route("GetPlanById/{planId}")]
     public async Task<IActionResult> GetUserPlanByIdAsync(int planId)
     {
         return Ok(_mapper.Map<AppPlanDto>(await _planService.GetPlanByIdAsync(planId)));
@@ -52,14 +52,15 @@ public class PlanController : ControllerBase
     }
 
     [HttpPut]
-    [Route("PutUserPlan/{id}")]
-    public async Task<IActionResult> UpdatePlanAsync(AppPlanDto request, int id)
+    [Route("PutUserPlan")]
+    public async Task<IActionResult> UpdatePlanAsync(AppPlanDto request)
     {
-        return Ok(await _planService.UpdatePlanAsync(_mapper.Map<AppPlan>(request), id));
+        await _planService.UpdatePlanAsync(_mapper.Map<AppPlan>(request));
+        return Ok();
     }
 
     [HttpDelete]
-    [Route("DeleteUserPlans{id}")]
+    [Route("DeleteUserPlans/{id}")]
     public async Task<IActionResult> RemovePlanAsync(int id)
     {
         await _planService.RemovePlanAsync(id);
