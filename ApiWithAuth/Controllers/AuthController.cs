@@ -1,5 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using ApiWithAuth.DTOs;
-using ApiWithAuth.Entity;
+using ApiWithAuth.Domain.Models;
 using ApiWithAuth.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -12,6 +13,7 @@ namespace ApiWithAuth.Controllers;
 [Route("[controller]")]
 public class AuthController : ControllerBase
 {
+
     private readonly UserManager<AppUser> _userManager;
     private readonly IUserService _userService;
     private readonly IMapper _mapper;
@@ -85,6 +87,14 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<AuthResponse>> ForgotPass(string email)
     {
         await _userService.ForgotPasswordAsync(email);
+        return Ok();
+    }
+    
+    [HttpPost]
+    [Route("ResetPassword/{email}")]
+    public async Task<ActionResult<AuthResponse>> ResetPassword(string email,[Required]string resetToken,[Required] string newPassword)
+    {
+        await _userService.ResetPasswordAsync(email,resetToken,newPassword);
         return Ok();
     }
     

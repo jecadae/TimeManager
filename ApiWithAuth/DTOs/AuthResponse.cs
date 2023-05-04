@@ -1,6 +1,4 @@
-using ApiWithAuth.Entity;
-
-namespace ApiWithAuth;
+namespace ApiWithAuth.DTOs;
 
     public class AuthResponse
     {

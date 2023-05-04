@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ApiWithAuth.Controllers;
+namespace ApiWithAuth.DTOs;
 
     public class RegistrationRequest
     {

@@ -1,22 +1,23 @@
 ﻿using ApiWithAuth.Domain;
 using ApiWithAuth.DTOs;
-using ApiWithAuth.Entity;
+using ApiWithAuth.Domain.Models;
 using ApiWithAuth.Interfaces;
-using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using MimeKit;
 
 namespace ApiWithAuth.Services;
 
 public class UserService: IUserService
 {
+    private readonly IEmailSender _emailSender;
     private readonly UserManager<AppUser> _userManager;
     private readonly UsersContext _context;
     private readonly TokenService _tokenService;
     
-    public UserService(UserManager<AppUser> userManager, UsersContext context, TokenService tokenService)
+    public UserService(UserManager<AppUser> userManager, UsersContext context, TokenService tokenService, IEmailSender emailSender)
     {
+        _emailSender = emailSender;
         _userManager = userManager;
         _context = context;
         _tokenService = tokenService;
@@ -106,34 +107,22 @@ public class UserService: IUserService
             throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
 
         string resetToken = await _userManager.GeneratePasswordResetTokenAsync(userInDb);
-        MimeMessage message = new MimeMessage();
-        message.From.Add(new MailboxAddress("Testes","dgmix999@gmail.com"));
-        message.To.Add(MailboxAddress.Parse("dgmix999@gmail.com"));
-        message.Subject = "работай пжпжп";
-        message.Body = new TextPart("plain")
-        {
-            Text = @"sdadsadsdsadsasd"
-        };
-        SmtpClient client = new SmtpClient();
-        try
-        {
-            client.Connect("smtp.gmail.com", 465, true);
-            client.Authenticate("dgmix999@gmail.com","Lfybbk2002");
-            client.Send(message);
-            Console.WriteLine(resetToken);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
-        finally
-        {
-            client.Disconnect(true);
-            client.Dispose();
-        }
+        await _emailSender.SendEmailAsync("dialog_ydot@list.ru","Восстановление пароля",resetToken);
+        
 
-        
-        
     }
+
+    public async Task ResetPasswordAsync(string email, string resetToken, string newPassword)
+    {
+        var userInDb = await _userManager.FindByEmailAsync(email);
+        if (userInDb is null)
+            throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
+        userInDb.UserName = email;
+        var result = await _userManager.ResetPasswordAsync(userInDb, resetToken, newPassword);
+        if (!result.Succeeded)
+            throw new BadHttpRequestException("Пароль не был сменен",404);
+    }
+
+
 
 }

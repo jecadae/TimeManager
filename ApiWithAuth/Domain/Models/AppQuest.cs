@@ -1,10 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-using AutoMapper.Configuration.Annotations;
+﻿namespace ApiWithAuth.Domain.Models;
 
-
-namespace ApiWithAuth.Entity;
 
 public class AppQuest
 {

@@ -1,4 +1,4 @@
-﻿using ApiWithAuth.Entity;
+﻿using ApiWithAuth.Domain.Models;
 
 namespace ApiWithAuth.Interfaces;
 

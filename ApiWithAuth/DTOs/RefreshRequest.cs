@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ApiWithAuth;
+namespace ApiWithAuth.DTOs;
 
 public class RefreshRequest
 {

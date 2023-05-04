@@ -1,8 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 
-namespace ApiWithAuth.Entity;
+namespace ApiWithAuth.Domain.Models;
+
 
 public class AppUser: IdentityUser<int>
 {

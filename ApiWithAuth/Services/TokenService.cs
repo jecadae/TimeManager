@@ -2,8 +2,7 @@ using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using ApiWithAuth.Entity;
-using Microsoft.AspNetCore.Identity;
+using ApiWithAuth.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ApiWithAuth.Services

@@ -1,5 +1,5 @@
 ﻿using ApiWithAuth.Domain;
-using ApiWithAuth.Entity;
+using ApiWithAuth.Domain.Models;
 using ApiWithAuth.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +33,7 @@ public class AppUserIconService: IAppUserIconService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<byte[]> GetImageArrayAsync(string email)
+    public async Task<byte[]?> GetImageArrayAsync(string email)
     {
         var userId = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
         if (userId == null)

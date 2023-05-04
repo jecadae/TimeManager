@@ -1,5 +1,5 @@
 ﻿using ApiWithAuth.DTOs;
-using ApiWithAuth.Entity;
+using ApiWithAuth.Domain.Models;
 using AutoMapper;
 
 namespace ApiWithAuth.Domain;

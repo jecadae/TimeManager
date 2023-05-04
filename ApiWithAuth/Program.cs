@@ -1,10 +1,11 @@
 using System.Text;
 using ApiWithAuth.Domain;
-using ApiWithAuth.Entity;
+using ApiWithAuth.Domain.Models;
 using ApiWithAuth.Interfaces;
 using ApiWithAuth.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPlanService, PlanService>();
 builder.Services.AddScoped<IAppUserIconService, AppUserIconService>();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddAutoMapper(typeof(AppMappingProfile));
 builder.Services.AddControllers();
 

@@ -1,4 +1,4 @@
-using ApiWithAuth.Entity;
+using ApiWithAuth.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +16,7 @@ public class UsersContext : IdentityUserContext<AppUser,int>
     {
         modelBuilder.Entity<IdentityUserLogin<int>>().HasNoKey();
         modelBuilder.Entity<IdentityUserToken<int>>().HasNoKey();
-        modelBuilder.Entity<IdentityUser<int>>().Ignore(Us => Us.UserName);
+        modelBuilder.Entity<IdentityUser<int>>().Ignore(s => s.UserName);
 
         modelBuilder.Entity<AppUserIcon>()
             .HasOne(ic =>ic.AppUser )
@@ -39,7 +39,6 @@ public class UsersContext : IdentityUserContext<AppUser,int>
     }
 
     public DbSet<AppPlan> AppPlans{ get; set; }
-    public DbSet<AppQuest> AppQuests{ get; set; } 
     public DbSet<AppUserIcon> AppUserIcons{ get; set; }
 
 

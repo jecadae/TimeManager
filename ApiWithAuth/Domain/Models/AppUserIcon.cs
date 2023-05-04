@@ -1,6 +1,5 @@
-using System.ComponentModel.DataAnnotations;
+namespace ApiWithAuth.Domain.Models;
 
-namespace ApiWithAuth.Entity;
 
 public class AppUserIcon
 {

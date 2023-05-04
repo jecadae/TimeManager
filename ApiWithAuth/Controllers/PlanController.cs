@@ -1,7 +1,6 @@
 using ApiWithAuth.DTOs;
-using ApiWithAuth.Entity;
+using ApiWithAuth.Domain.Models;
 using ApiWithAuth.Interfaces;
-using ApiWithAuth.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

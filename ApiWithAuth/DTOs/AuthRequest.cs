@@ -1,4 +1,4 @@
-namespace ApiWithAuth;
+namespace ApiWithAuth.DTOs;
 
     public class AuthRequest
     {
