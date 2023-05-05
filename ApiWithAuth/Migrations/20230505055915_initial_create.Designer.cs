@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiWithAuth.Migrations
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20230504045237_Rename_Attribute")]
-    partial class Rename_Attribute
+    [Migration("20230505055915_initial_create")]
+    partial class initial_create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace ApiWithAuth.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppPlan", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppPlan", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace ApiWithAuth.Migrations
                     b.ToTable("AppPlans");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppQuest", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppQuest", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,10 +77,10 @@ namespace ApiWithAuth.Migrations
 
                     b.HasIndex("AppPlanId");
 
-                    b.ToTable("AppQuests");
+                    b.ToTable("AppQuest");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppUserIcon", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppUserIcon", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
@@ -219,7 +219,7 @@ namespace ApiWithAuth.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppUser", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser<int>");
 
@@ -241,45 +241,46 @@ namespace ApiWithAuth.Migrations
                     b.HasDiscriminator().HasValue("AppUser");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppPlan", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppPlan", b =>
                 {
-                    b.HasOne("ApiWithAuth.Entity.AppUser", "AppUser")
+                    b.HasOne("ApiWithAuth.Domain.Models.AppUser", "AppUser")
                         .WithMany("UserPlans")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppQuest", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppQuest", b =>
                 {
-                    b.HasOne("ApiWithAuth.Entity.AppPlan", "AppPlan")
+                    b.HasOne("ApiWithAuth.Domain.Models.AppPlan", "AppPlan")
                         .WithMany("Quests")
-                        .HasForeignKey("AppPlanId");
+                        .HasForeignKey("AppPlanId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AppPlan");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppUser", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppUser", b =>
                 {
-                    b.HasOne("ApiWithAuth.Entity.AppUserIcon", "AppUserIcon")
+                    b.HasOne("ApiWithAuth.Domain.Models.AppUserIcon", "AppUserIcon")
                         .WithOne("AppUser")
-                        .HasForeignKey("ApiWithAuth.Entity.AppUser", "AppUserIconsId")
-                        .HasPrincipalKey("ApiWithAuth.Entity.AppUserIcon", "AppUserId");
+                        .HasForeignKey("ApiWithAuth.Domain.Models.AppUser", "AppUserIconsId")
+                        .HasPrincipalKey("ApiWithAuth.Domain.Models.AppUserIcon", "AppUserId");
 
                     b.Navigation("AppUserIcon");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppPlan", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppPlan", b =>
                 {
                     b.Navigation("Quests");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppUserIcon", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppUserIcon", b =>
                 {
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("ApiWithAuth.Entity.AppUser", b =>
+            modelBuilder.Entity("ApiWithAuth.Domain.Models.AppUser", b =>
                 {
                     b.Navigation("UserPlans");
                 });

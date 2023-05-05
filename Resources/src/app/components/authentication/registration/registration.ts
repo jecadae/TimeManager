@@ -100,9 +100,6 @@ export class RegistrationComponent implements OnInit {
     this.auth.regUser(user);
     return
   }
-  GoLogin(){
-    this.router.navigate(['/login']);
-  }
 }
 
 

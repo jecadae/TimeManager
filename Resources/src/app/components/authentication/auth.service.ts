@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(
     private http: HttpClient,
+    private router: Router,
     ) {}
 
   token: any;
@@ -25,7 +27,7 @@ export class AuthService {
       'https://localhost:44393/Auth/register',
       user,
       {observe: 'response'}).subscribe({
-        next:()=>{        alert('Регистрация прошла успешно')},
+        next:()=>{        this.router.navigate(['/login']);},
         error:()=>{        alert('Ошибка!')},
       });
   }

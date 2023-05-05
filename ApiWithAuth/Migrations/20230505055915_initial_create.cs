@@ -110,7 +110,7 @@ namespace ApiWithAuth.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     AppUserId = table.Column<int>(type: "integer", nullable: false),
-                    done = table.Column<bool>(type: "boolean", nullable: false)
+                    IsReady = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -123,7 +123,7 @@ namespace ApiWithAuth.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AppQuests",
+                name: "AppQuest",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -131,17 +131,18 @@ namespace ApiWithAuth.Migrations
                     AppPlanId = table.Column<int>(type: "integer", nullable: false),
                     Discription = table.Column<string>(type: "text", nullable: true),
                     DeadLine = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Status = table.Column<bool>(type: "boolean", nullable: false),
+                    IsReady = table.Column<bool>(type: "boolean", nullable: false),
                     Links = table.Column<List<string>>(type: "text[]", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppQuests", x => x.Id);
+                    table.PrimaryKey("PK_AppQuest", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AppQuests_AppPlans_AppPlanId",
+                        name: "FK_AppQuest_AppPlans_AppPlanId",
                         column: x => x.AppPlanId,
                         principalTable: "AppPlans",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -150,8 +151,8 @@ namespace ApiWithAuth.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppQuests_AppPlanId",
-                table: "AppQuests",
+                name: "IX_AppQuest_AppPlanId",
+                table: "AppQuest",
                 column: "AppPlanId");
 
             migrationBuilder.CreateIndex(
@@ -164,7 +165,7 @@ namespace ApiWithAuth.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AppQuests");
+                name: "AppQuest");
 
             migrationBuilder.DropTable(
                 name: "UserClaims");
