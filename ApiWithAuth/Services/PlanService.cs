@@ -24,9 +24,6 @@ public class PlanService : IPlanService
         var userId = await _context.Users.AsNoTracking().FirstOrDefaultAsync( x => x.Email==email);
         if (userId == null)
             throw new BadHttpRequestException("Такой пользователь не был зарегестрирован",404);
-        var appPlans = await _context.AppPlans.Where(x => x.AppUserId == userId.Id).ToListAsync();
-        if (appPlans == null)
-            throw new BadHttpRequestException("У пользователя нет планов",404);
         return await _context.AppPlans.AsNoTracking().Include(x => x.Quests).Where(x => x.AppUserId == userId.Id).ToListAsync();
     }
 
