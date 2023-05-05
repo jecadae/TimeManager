@@ -97,11 +97,11 @@ export class RegistrationComponent implements OnInit {
     if (errCount > 0) return false;
     
   
-    this.auth.regUser(user)
+    this.auth.regUser(user);
     return
   }
   GoLogin(){
-    this.router.navigate(['http://localhost:4200/login']);
+    this.router.navigate(['/login']);
   }
 }
 
