@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 //import { CheckDataService } from '../check-data.service';
 //import { AuthService } from '../auth.service';
-import { Router } from '@angular/router'
-import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
+import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http'
+import { map, observeOn } from 'rxjs/operators';
+import { identity } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,12 +13,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
 
+  
+  base64 = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//'
+  pathToSaveImage = './public/image.png'
   surname: string = '';
   name: string = '';
   patronymic: string = '';
   OldPassword: string = '';
   NewPassword: string = '';
   NewPasswordRepeat: string = '';
+  token: any;
 
   constructor(
     //private checkRegistration: CheckDataService,
@@ -25,6 +30,23 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     //private auth: AuthService
   ) {}
+
+  //path = converBase64ToImage(this.base64, this.pathToSaveImage) //returns path /public/image.png
+
+  imageGet(id: number) {
+    let headers = new HttpHeaders;
+    headers.append('Content-Type', 'application/json');
+    headers.append('accept', 'text/plain')
+    headers.append('Authorization:','Bearer'+this.token);
+    return this.http.get(
+      'https://localhost:44393/Auth/UserIconController/GetIcon',
+      {observe: 'response'}).subscribe({
+        next:(response: HttpResponse<any>)=>{
+            return response.body;
+        },
+        error:()=>{ alert('Ошибка!')},
+      });
+  }
 
   ngOnInit() {
   }

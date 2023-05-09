@@ -4,8 +4,6 @@ import { map, observeOn } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -61,4 +59,7 @@ export class AuthService {
     this.token = token;
     this.user = user;
   }
+
+
+
 }
