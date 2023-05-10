@@ -2,57 +2,37 @@
 <p class="my-profile">Настройка профиля</p>
 <p class="personal">Личная информация</p>
 <div class="wraper">
-    <form class="ChangeData">
-        <div>
-            <label class="name-input">Фамилия</label>
-            <input type="text" name="surname" [(ngModel)]="surname" class="input">
-            <!-- <label class="err-label">{{surnameErrTitle}}</label> -->
+  <form [formGroup]="myForm" (ngSubmit)="submit()">
+        
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input
+            formControlName="name"
+            id="name"
+            type="text"
+            class="form-control">
+        <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+            <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+ 
+  
+            <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be 3 character.</div>
         </div>
-
-        <div>
-            <label class="name-input">Имя</label>
-            <input type="text" name="name" [(ngModel)]="name" class="input">
-            <!-- <label class="err-label">{{nameErrTitle}}</label> -->
-        </div>
-
-        <div>
-            <label class="name-input">Отчество</label>
-            <input type="text" name="patronymic" [(ngModel)]="patronymic" class="input">
-            <!-- <label class="err-label">{{patronymicErrTitle}}</label> -->
-        </div>
-
-        <div>
-            <label class="name-input">Старый пароль</label>
-            <input type="password" name="password" [(ngModel)]="OldPassword" class="input">
-            <!-- <label class="err-label">{{passwordErrTitle}}</label> -->
-        </div>
-
-        <div>
-            <label class="name-input">Новый пароль</label>
-            <input type="password" name="passwordRepead" [(ngModel)]="NewPassword" class="input" id="passwordInput">
-            <!-- <label class="err-label">{{passwordRepeadErrTitle}}</label> -->
-        </div>
-
-        <div>
-            <label class="name-input">Повторите новый пароль</label>
-            <input type="password" name="passwordRepead" [(ngModel)]="NewPasswordRepeat" class="input" id="passwordInput">
-            <!-- <label class="err-label">{{passwordRepeadErrTitle}}</label> -->
-        </div>
-    </form>
-
-<div class="container pt-3">
-    <div class="card text-dark bg-white mx-auto mb-3" style="max-width: 46rem;">
-      <div class="card-body">
-        <form class="form" action="[[~[[*id]]]]" method="post" enctype="multipart/form-data">
-          <!-- блок, содержащий поле photo, с помощью которого будем загружать фото -->
-          <div class="mb-3">
-            <label for="photo" class="form-label">Фото</label>
-            <input type="file" id="photo" name="photo" class="form-control">
-            <div class="invalid-feedback"></div>
-          </div>
-          <input type="submit" class="btn-primary" onclick="imageGet" value="Обновить профиль" name="login-updprof-btn" id="login-updprof-btn">
-        </form>
-      </div>
     </div>
-  </div>
-</div>
+       
+    <div class="form-group">
+        <label for="file">File:</label>
+        <input
+            formControlName="file"
+            id="file"
+            type="file"
+            class="form-control"
+            (change)="onFileChange($event)">
+        <div *ngIf="f['file'].touched && f['file'].invalid" class="alert alert-danger">
+            <div *ngIf="f['file'].errors && f['file'].errors['required']">File is required.</div>
+        </div>
+    </div>
+       
+    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+           
+    <button class="btn btn-primary" [disabled]="myForm.invalid" type="submit">Submit</button>
+</form>
