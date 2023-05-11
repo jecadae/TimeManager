@@ -59,6 +59,23 @@ export class LoginComponent implements OnInit {
     return localStorage.getItem(this.data.token);
   }
 
+  logUser(user: any) {
+    // return new Observable<boolean>((observer)=>{
+    //   this.http.post<any>(this.)
+    // })
+
+    let headers = new HttpHeaders;
+    headers.append('Content-Type', 'application/json');
+    headers.append('accept', 'text/plain')
+    return this.http.post(
+      'https://localhost:44393/Auth/login',
+      user,
+      {observe: 'response', headers: headers}).subscribe({
+        next:()=>{        this.router.navigate(['/home-page']);},
+        error:()=>{        alert('Ошибка!')},
+      });
+  }
+
 
   ngOnInit(): void {
     
