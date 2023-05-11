@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     patronymic: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  })
+  });
  
   constructor(private http: HttpClient) { }
   get f(){
@@ -93,6 +93,15 @@ export class ProfileComponent implements OnInit {
   submit(){
     console.log(this.myForm.value);
     this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myForm.value)
+      .subscribe(res => {
+        console.log(res);
+        alert('Uploaded Successfully.');
+      })
+  }
+
+  save(){
+    console.log(this.myName.value);
+    this.http.post('https://localhost:44393/Auth/rename', this.myName.value)
       .subscribe(res => {
         console.log(res);
         alert('Uploaded Successfully.');

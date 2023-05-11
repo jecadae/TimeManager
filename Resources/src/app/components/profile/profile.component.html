@@ -7,25 +7,25 @@
     <div class="form-group">
         <label for="name">Имя:</label>
           <input
-            FormControlname="name"
+            FormControlName="name"
             id="name"
             type="text"
             class="form-control">
         <label for="surname">Фамилия:</label>
           <input
-            FormControlsurname="surname"
+            FormControlName="surname"
             id="surname"
             type="text"
             class="form-control">
         <label for="patronymic">Отчество:</label>
           <input
-            FormControlpatronymic="patronymic"
+            FormControlName="patronymic"
             id="patronymic"
             type="text"
             class="form-control">
     </div>
        
-    <button class="btn btn-primary1" type="submit">Сохранить</button>
+    <button class="btn btn-primary1"  type="save">Сохранить</button>
   </form>
 
   <form [formGroup]="myForm" (ngSubmit)="submit()">
