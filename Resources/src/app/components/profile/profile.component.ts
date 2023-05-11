@@ -63,7 +63,9 @@ export class ProfileComponent implements OnInit {
     patronymic: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
  
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private localStore: LocalService) { }
   get f(){
     return this.myForm.controls;
   }
@@ -92,7 +94,7 @@ export class ProfileComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append('accept', 'text/plain')
     headers.append('Authorization:','Bearer');
-    localStorage['saveData']
+   
     console.log(this.myForm.value);
     this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myForm.value)
       .subscribe(res => {
@@ -116,7 +118,7 @@ export class ProfileComponent implements OnInit {
         console.log(res);
         alert('Uploaded Successfully.');
       })
-    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myName.value, {
+    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon',  this.localStore['saveData'], {
         headers: headers
       })
   }
