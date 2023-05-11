@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit {
         console.log(res);
         alert('Uploaded Successfully.');
       })
-    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon',  this.localStore.saveData, {
+    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.localStore.saveData, {
         headers: headers
       })
   }

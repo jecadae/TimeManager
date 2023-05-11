@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
     if (errCount > 0) return false
     
-    this.auth.logUser(user);{
+    this.auth.logUser(user).subscribe((data: any) => {
       // try {
       //   data
       //   .post('localhost:44393/Auth/login')
@@ -65,15 +65,15 @@ export class LoginComponent implements OnInit {
       //     alert('Ошибка')
       //   }
       // });
-      if (!this.data.succes) {
+      if (!data.succes) {
         this.errLabel = 'Неверный email или пароль'
       }
       else 
-      this.auth.platformUser(this.data.token, this.data.user)
-      localStorage.setItem(this.data.token, this.data.user);
+      this.auth.platformUser(data.token, data.user)
+      localStorage.setItem(data.token, data.user);
       this.router.navigate(['/home-page']);
 
-      }
+      })
     return localStorage.getItem(this.data.token);
   }
 
