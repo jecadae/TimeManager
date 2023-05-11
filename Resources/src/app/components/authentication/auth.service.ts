@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post(
       'https://localhost:44393/Auth/register',
       user,
-      {observe: 'response'}).subscribe({
+      {observe: 'response', headers: headers}).subscribe({
         next:()=>{        this.router.navigate(['/login']);},
         error:()=>{        alert('Ошибка!')},
       });
@@ -41,7 +41,10 @@ export class AuthService {
     return this.http.post(
       'https://localhost:44393/Auth/login',
       user,
-      {headers: headers}).pipe((response:any) => response);
+      {observe: 'response', headers: headers}).subscribe({
+        next:()=>{        this.router.navigate(['/home-page']);},
+        error:()=>{        alert('Ошибка!')},
+      });
   }
   
   passwordReset(user: any) {

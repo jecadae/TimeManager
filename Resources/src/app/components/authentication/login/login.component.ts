@@ -56,24 +56,7 @@ export class LoginComponent implements OnInit {
 
     if (errCount > 0) return false
     
-    this.auth.logUser(user).subscribe((data: any) => {
-      // try {
-      //   data
-      //   .post('localhost:44393/Auth/login')
-      //   this.router.navigate(['localhost:4200/my-plan']);
-      //   } catch (error){
-      //     alert('Ошибка')
-      //   }
-      // });
-      if (!data.succes) {
-        this.errLabel = 'Неверный email или пароль'
-      }
-      else 
-      this.auth.platformUser(data.token, data.user)
-      localStorage.setItem(data.token, data.user);
-      this.router.navigate(['/home-page']);
-      })
-    return
+    return localStorage.getItem(this.data.token);
   }
 
 
