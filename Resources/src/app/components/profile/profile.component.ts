@@ -94,7 +94,6 @@ export class ProfileComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append('accept', 'text/plain')
     headers.append('Authorization:','Bearer');
-   
     console.log(this.myForm.value);
     this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myForm.value)
       .subscribe(res => {
@@ -111,14 +110,13 @@ export class ProfileComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append('accept', 'text/plain')
     headers.append('Authorization:','Bearer');
-    localStorage['saveData']
     console.log(this.myName.value);
     this.http.post('https://localhost:44393/Auth/rename', this.myName.value)
       .subscribe(res => {
         console.log(res);
         alert('Uploaded Successfully.');
       })
-    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon',  this.localStore['saveData'], {
+    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon',  this.localStore.saveData, {
         headers: headers
       })
   }
