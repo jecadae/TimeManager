@@ -56,6 +56,8 @@ export class ProfileComponent implements OnInit {
    
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    patronymic: new FormControl('', [Validators.required, Validators.minLength(3)]),
     file: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
   });
