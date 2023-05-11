@@ -2,7 +2,7 @@
 <p class="my-profile">Настройка профиля</p>
 <p class="personal">Личная информация</p>
 <div class="wraper">
-  <form [formGroup]="myForm" (ngSubmit)="submit()">
+  <form [formGroup]="myName" (ngSubmit)="submit()">
         
     <div class="form-group">
         <label for="name">Имя:</label>
@@ -25,6 +25,10 @@
                   class="form-control">
     </div>
        
+    <button class="btn btn-primary" [disabled]="myName.invalid" type="submit">Submit</button>
+  </form>
+
+  <form [formGroup]="myForm" (ngSubmit)="submit()">
     <div class="form-group">
         <label for="file">File:</label>
         <input

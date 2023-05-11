@@ -55,12 +55,15 @@ export class ProfileComponent implements OnInit {
   imageSrc: string = '';
    
   myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    patronymic: new FormControl('', [Validators.required, Validators.minLength(3)]),
     file: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
   });
+
+  myName = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    patronymic: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  })
  
   constructor(private http: HttpClient) { }
   get f(){
