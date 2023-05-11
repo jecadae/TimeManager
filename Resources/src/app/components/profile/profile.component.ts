@@ -84,7 +84,6 @@ export class ProfileComponent implements OnInit {
         });
     
       };
-    
     }
   }
    
@@ -100,6 +99,9 @@ export class ProfileComponent implements OnInit {
         console.log(res);
         alert('Uploaded Successfully.');
       })
+    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myForm.value, {
+      headers: headers
+    })
   }
 
   save(){
@@ -113,6 +115,9 @@ export class ProfileComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         alert('Uploaded Successfully.');
+      })
+    return this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myName.value, {
+        headers: headers
       })
   }
 
