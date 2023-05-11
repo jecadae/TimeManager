@@ -23,9 +23,8 @@
             id="patronymic"
             type="text"
             class="form-control">
-    </div>
-       
-    <button class="btn btn-primary1"  type="submit">Сохранить</button>
+    </div>     
+    <button class="btn btn-primary1" [disabled]="myName.invalid" type="submit">Сохранить</button>
   </form>
 
   <form [formGroup]="myForm" (ngSubmit)="submit()">

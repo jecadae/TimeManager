@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { CheckDataService } from '../check-data.service';
-//import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { LocalService } from '../Local.service';
 import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http'
 import { map, observeOn } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
@@ -91,6 +89,11 @@ export class ProfileComponent implements OnInit {
   }
    
   submit(){
+    let headers = new HttpHeaders;
+    headers.append('Content-Type', 'application/json');
+    headers.append('accept', 'text/plain')
+    headers.append('Authorization:','Bearer');
+    localStorage['saveData']
     console.log(this.myForm.value);
     this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myForm.value)
       .subscribe(res => {
@@ -100,6 +103,11 @@ export class ProfileComponent implements OnInit {
   }
 
   save(){
+    let headers = new HttpHeaders;
+    headers.append('Content-Type', 'application/json');
+    headers.append('accept', 'text/plain')
+    headers.append('Authorization:','Bearer');
+    localStorage['saveData']
     console.log(this.myName.value);
     this.http.post('https://localhost:44393/Auth/rename', this.myName.value)
       .subscribe(res => {
