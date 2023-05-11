@@ -59,11 +59,12 @@ export class LoginComponent implements OnInit {
     return localStorage.getItem(this.data.token);
   }
 
-  logUser(user: any) {
-    // return new Observable<boolean>((observer)=>{
-    //   this.http.post<any>(this.)
-    // })
-
+  logUser() {
+    const user = {
+      email: this.email,
+      password: this.password
+    }
+    
     let headers = new HttpHeaders;
     headers.append('Content-Type', 'application/json');
     headers.append('accept', 'text/plain')
