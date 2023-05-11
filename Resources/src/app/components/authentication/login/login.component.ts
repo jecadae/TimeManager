@@ -56,25 +56,25 @@ export class LoginComponent implements OnInit {
 
     if (errCount > 0) return false
     
-    return localStorage.getItem(this.data.token);
-  }
+    this.auth.logUser(user);{
+      // try {
+      //   data
+      //   .post('localhost:44393/Auth/login')
+      //   this.router.navigate(['localhost:4200/my-plan']);
+      //   } catch (error){
+      //     alert('Ошибка')
+      //   }
+      // });
+      if (!this.data.succes) {
+        this.errLabel = 'Неверный email или пароль'
+      }
+      else 
+      this.auth.platformUser(this.data.token, this.data.user)
+      localStorage.setItem(this.data.token, this.data.user);
+      this.router.navigate(['/home-page']);
 
-  logUser() {
-    const user = {
-      email: this.email,
-      password: this.password
-    }
-    
-    let headers = new HttpHeaders;
-    headers.append('Content-Type', 'application/json');
-    headers.append('accept', 'text/plain')
-    return this.http.post(
-      'https://localhost:44393/Auth/login',
-      user,
-      {observe: 'response', headers: headers}).subscribe({
-        next:()=>{        this.router.navigate(['/home-page']);},
-        error:()=>{        alert('Ошибка!')},
-      });
+      }
+    return localStorage.getItem(this.data.token);
   }
 
 
