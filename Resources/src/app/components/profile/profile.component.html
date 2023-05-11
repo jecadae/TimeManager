@@ -37,8 +37,8 @@
             <div *ngIf="f['file'].errors && f['file'].errors['required']">File is required.</div>
         </div>
     </div>
-       
+
     <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:300px">
            
-    <button class="btn btn-primary" [disabled]="myForm.name.invalid" type="submit">Submit</button>
+    <button class="btn btn-primary" [disabled]="myForm.controls.file.invalid" type="submit">Submit</button>
 </form>
