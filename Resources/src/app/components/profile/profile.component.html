@@ -6,31 +6,31 @@
         
     <div class="form-group">
         <label for="name">Имя:</label>
-        <input
-            Name="name"
+          <input
+            FormControlname="name"
             id="name"
             type="text"
             class="form-control">
         <label for="surname">Фамилия:</label>
-            <input
-                Name="surname"
-                id="surname"
-                type="text"
-                class="form-control">
+          <input
+            FormControlsurname="surname"
+            id="surname"
+            type="text"
+            class="form-control">
         <label for="patronymic">Отчество:</label>
-            <input
-                  Name="patronymic"
-                  id="patronymic"
-                  type="text"
-                  class="form-control">
+          <input
+            FormControlpatronymic="patronymic"
+            id="patronymic"
+            type="text"
+            class="form-control">
     </div>
        
-    <button class="btn btn-primary" [disabled]="myName.invalid" type="submit">Submit</button>
+    <button class="btn btn-primary1" type="submit">Сохранить</button>
   </form>
 
   <form [formGroup]="myForm" (ngSubmit)="submit()">
     <div class="form-group">
-        <label for="file">File:</label>
+        <label for="file">Фото профиля:</label>
         <input
             formControlName="file"
             id="file"
@@ -44,5 +44,5 @@
 
     <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:300px">
            
-    <button class="btn btn-primary" [disabled]="myForm.controls.file.invalid" type="submit">Submit</button>
+    <button class="btn btn-primary2" [disabled]="myForm.controls.file.invalid" type="submit">Загрузить</button>
 </form>

@@ -7,6 +7,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { RegistrationComponent } from '../registration/registration'; 
 import { Data } from '@angular/router';
+import { LocalService } from '../../Local.service';
 
 @Component({
   selector: 'app-login',
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
       }
       else 
       this.auth.platformUser(data.token, data.user)
+      localStorage.setItem(data.token, data.user);
       this.router.navigate(['/home-page']);
       })
     return

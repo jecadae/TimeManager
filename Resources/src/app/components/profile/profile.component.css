@@ -142,3 +142,24 @@
 .form-group{
     padding-right: 400px;
 }
+
+.btn-primary1{
+    margin-bottom: 40px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    background-color:#D76B49;
+    color:#FFFFFF
+}
+
+.btn-primary2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    background-color:#D76B49;
+    color:#FFFFFF
+}

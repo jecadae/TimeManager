@@ -1,6 +1,7 @@
 import { AppComponent } from './app.component';
 import { AuthService } from './components/authentication/auth.service'
 import { CheckDataService } from './components/authentication/check-data.service'
+import { LocalService } from './components/Local.service';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
 import { PasswordResetComponent } from './components/authentication/password-reset/password-reset.component';
@@ -173,6 +174,7 @@ const matModule = [
       useValue: {}
     },
     CheckDataService,
+    LocalService,
     AuthService],
 
   bootstrap: [AppComponent]
