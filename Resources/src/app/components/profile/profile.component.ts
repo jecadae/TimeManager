@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit {
    
   submit(){
     console.log(this.myForm.value);
-    this.http.post('https://localhost:44393/Auth/UseIconController/AddUserIcon', this.myForm.value)
+    this.http.post('https://localhost:44393/UserIcon/AddUserIcon', this.myForm.value)
       .subscribe(res => {
         console.log(res);
         alert('Uploaded Successfully.');

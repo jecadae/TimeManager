@@ -1,8 +1,10 @@
 using ApiWithAuth.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiWithAuth.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("/[controller]")]
 public class UserIconController: ControllerBase
