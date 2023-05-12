@@ -9,7 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LocalService } from '../Local.service';
 import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AuthService } from '../authentication/auth.service';
+import { Router } from '@angular/router';
 
 const material = [
   MatFormFieldModule, 
@@ -34,11 +36,27 @@ export class NavigationBarComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private localStorage: LocalService) {}
+    private localStorage: LocalService,
+    private http: HttpClient,
+    private router: Router,) {}
 
-  giveData(){
-    this.localStorage.getData;
-    return this.localStorage
+  giveData(token: any, email: any){
+     email = this.localStorage.getEmail;
+     token = this.localStorage.getToken;
+  }
+
+  regUser(token: any, email: any) {
+    let headers = new HttpHeaders;
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('accept', 'value')
+    headers.append('Authorization', 'Bearer'+token)
+    return this.http.get(
+      'https://localhost:44393/Plan/GetPlanThisUser/'+email,
+      {observe: 'response', headers:headers}).subscribe({
+        next:()=>{        alert(['NICE']);},
+        error:()=>{        alert('Ошибка!')},
+      });
   }
   
   

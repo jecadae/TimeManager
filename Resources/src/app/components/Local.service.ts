@@ -15,10 +15,16 @@ export class LocalService {
     localStorage.setItem(email, token);
   }
 
-  public getData(email: string) {
+  public getEmail(email: string) {
     return localStorage.getItem(email)
 
   }
+
+  public getToken(token: string) {
+    return localStorage.getItem(token)
+
+  }
+
   public removeData(key: string) {
     localStorage.removeItem(key);
   }
