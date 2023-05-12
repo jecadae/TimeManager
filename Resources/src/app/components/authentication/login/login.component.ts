@@ -70,11 +70,11 @@ export class LoginComponent implements OnInit {
       }
       else 
       this.auth.platformUser(data.token, data.user)
-      localStorage.setItem(data.token, data.user);
+      localStorage.setItem(this.email, data.token);
       this.router.navigate(['/home-page']);
 
       })
-    return localStorage.getItem(this.data.token);
+    return this.data.saveData(user);
   }
 
 

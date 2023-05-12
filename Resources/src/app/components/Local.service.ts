@@ -11,12 +11,13 @@ export class LocalService {
 
   constructor() { }
 
-  public saveData(key: string, value: string) {
-    localStorage.setItem(key, value);
+  public saveData(email: string, token: string) {
+    localStorage.setItem(email, token);
   }
 
-  public getData(key: string) {
-    return localStorage.getItem(key)
+  public getData(email: string) {
+    return localStorage.getItem(email)
+
   }
   public removeData(key: string) {
     localStorage.removeItem(key);

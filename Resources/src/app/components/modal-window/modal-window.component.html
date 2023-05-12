@@ -23,6 +23,7 @@
 
       <!-- Deadline -->
 
+     
       <section class="section">
 
         <svg width="653" height="6" viewBox="0 0 653 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,27 +33,28 @@
         </svg>
 
         <section class="checkbox">
-          <input type="checkbox" [(ngModel)]="checkDeadline">
-          <label>Добавить дедлайн</label>
-          <mat-checkbox class="example-margin" [(ngModel)]="checkDeadline">Добавить дедлайн</mat-checkbox>
+          <!-- <input type="checkbox" [(ngModel)]="checkDeadline"> -->
+          <mat-checkbox class="example-margin" [(ngModel)]="checkDeadline"></mat-checkbox>
+          <label class="label">Добавить дедлайн</label>
         </section>
+
 
         <section>            
           <input type="date" [(ngModel)]="deadline">
-          <mat-form-field appearance="fill">
+          <!-- <mat-form-field appearance="fill">
             <mat-label>Выбрать дату</mat-label>
             <input matInput [matDatepicker]="picker" [(ngModel)]="deadline">
             <mat-hint>ММ/ДД/ГГГГ</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+          </mat-form-field> -->
         </section>
 
-        <svg width="653" height="6" viewBox="0 0 653 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg width="653" height="6" viewBox="0 0 653 6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M0.333333 3C0.333333 4.47276 1.52724 5.66667 3 5.66667C4.47276 5.66667 5.66667 4.47276 5.66667 3C5.66667 1.52724 4.47276 0.333333 3 0.333333C1.52724 0.333333 0.333333 1.52724 0.333333 3ZM647.333 3C647.333 4.47276 648.527 5.66667 650 5.66667C651.473 5.66667 652.667 4.47276 652.667 3C652.667 1.52724 651.473 0.333333 650 0.333333C648.527 0.333333 647.333 1.52724 647.333 3ZM3 3.5L650 3.5V2.5L3 2.5V3.5Z"
             fill="#D76B49" />
-        </svg>
+        </svg> -->
 
       </section>
 
@@ -77,7 +79,6 @@
         <section class="task-frame">
           <label class="name-input1">Описание</label>
           <section class="gap">
-            <input class="orange-input">
             <input class="orange-input">
           </section>
         </section>

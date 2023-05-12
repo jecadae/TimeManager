@@ -34,7 +34,7 @@ export class ModalWindowComponent implements OnInit, AfterViewInit {
   ngOnInit() { }
 
   privacy: string = '';
-  choicePrivacy: string[] = ['Скрыть задачу', 'Сделать задачу видимой'];
+  choicePrivacy: string[] = ['Скрыть задачу'];
 
   checkDeadline: boolean = false;
   nameGoal: string = '';

@@ -6,12 +6,17 @@ import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LocalService } from '../Local.service';
+import { Token } from '@angular/compiler';
+import { Injectable } from '@angular/core';
+import { AuthService } from '../authentication/auth.service';
 
 const material = [
   MatFormFieldModule, 
   MatInputModule
 ]
 
+@Injectable()
 
 @Component({
   selector: 'app-navigation-bar',
@@ -27,6 +32,14 @@ export class NavigationBarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private localStorage: LocalService) {}
+
+  giveData(){
+    this.localStorage.getData;
+    return this.localStorage
+  }
+  
   
 }
