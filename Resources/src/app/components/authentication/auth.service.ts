@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   logUser(user: any) {
-    // return new Observable<boolean>((observer)=>{
+    //return new Observable<boolean>((observer)=>{
     //   this.http.post<any>(this.)
     // })
 
@@ -51,6 +51,7 @@ export class AuthService {
           this.router.navigate(['/home-page']);
           },
         error:(response: HttpResponse<any>)=>{alert(response.body)},
+      
       });
   }
   
