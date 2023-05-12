@@ -45,7 +45,7 @@ export class NavigationBarComponent {
      token = this.localStorage.getToken;
   }
 
-  regUser(token: any, email: any) {
+  getPlanUser(token: any, email: any) {
     let headers = new HttpHeaders;
 
     headers.append('Content-Type', 'application/json');
