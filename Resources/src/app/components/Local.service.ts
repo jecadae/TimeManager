@@ -12,7 +12,8 @@ export class LocalService {
   constructor() { }
 
   public saveData(email: string, token: string) {
-    localStorage.setItem(email, token);
+    localStorage.setItem('email',email);
+    localStorage.setItem('token',token);
   }
 
   public getEmail(email: string) {
