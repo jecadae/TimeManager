@@ -53,7 +53,7 @@ export class NavigationBarComponent implements OnInit{
     return this.http.get<Array<AppPlanDto>>(
       'https://localhost:44393/Plan/GetPlanThisUser/'+this.localStorage.getEmail,
       {observe: 'response', headers:headers}).subscribe({
-        next:()=>{        alert(['NICE']);},
+        next:()=>{        alert([AppPlanDto]);},
         error:()=>{        alert('Ошибка!')},
       });
   }
