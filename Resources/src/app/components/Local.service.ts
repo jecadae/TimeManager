@@ -16,13 +16,13 @@ export class LocalService {
     localStorage.setItem('token',token);
   }
 
-  public getEmail(email: string) {
-    return localStorage.getItem(email)
+  public getEmail() {
+    return localStorage.getItem('email')
 
   }
 
-  public getToken(token: string) {
-    return localStorage.getItem(token)
+  public getToken(){
+    return localStorage.getItem('token')
 
   }
 
