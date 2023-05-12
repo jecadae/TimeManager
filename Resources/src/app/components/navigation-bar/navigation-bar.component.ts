@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -26,7 +26,7 @@ const material = [
   styleUrls: ['./navigation-bar.component.css']
 })
 
-export class NavigationBarComponent {
+export class NavigationBarComponent implements OnInit{
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -40,7 +40,9 @@ export class NavigationBarComponent {
     private http: HttpClient,
     private router: Router,) {}
 
-
+  ngOnInit(): void {
+    this.getPlanUser();
+  }
 
   getPlanUser() {
     let headers = new HttpHeaders;
