@@ -38,19 +38,19 @@ export class NavigationBarComponent {
     private breakpointObserver: BreakpointObserver,
     private localStorage: LocalService,
     private http: HttpClient,
-    private router: Router,) {}
+    private router: Router,
+    private headers: HttpHeaders,
+    ) {}
 
 
 
   getPlanUser() {
-    let headers = new HttpHeaders;
-
-    headers.append('Content-Type', 'application/json');
-    headers.append('accept', 'value')
-    headers.append('Authorization', 'Bearer'+this.localStorage.getToken)
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('accept', 'value')
+    this.headers.append('Authorization', 'Bearer'+this.localStorage.getToken)
     return this.http.get(
       'https://localhost:44393/Plan/GetPlanThisUser/'+this.localStorage.getEmail,
-      {observe: 'response', headers:headers}).subscribe({
+      {observe: 'response', headers:this.headers}).subscribe({
         next:()=>{        alert(['NICE']);},
         error:()=>{        alert('Ошибка!')},
       });
