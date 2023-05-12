@@ -40,19 +40,16 @@ export class NavigationBarComponent {
     private http: HttpClient,
     private router: Router,) {}
 
-  giveData(token: any, email: any){
-     email = this.localStorage.getEmail;
-     token = this.localStorage.getToken;
-  }
 
-  getPlanUser(token: any, email: any) {
+
+  getPlanUser() {
     let headers = new HttpHeaders;
 
     headers.append('Content-Type', 'application/json');
     headers.append('accept', 'value')
-    headers.append('Authorization', 'Bearer'+token)
+    headers.append('Authorization', 'Bearer'+this.localStorage.getToken)
     return this.http.get(
-      'https://localhost:44393/Plan/GetPlanThisUser/'+email,
+      'https://localhost:44393/Plan/GetPlanThisUser/'+this.localStorage.getEmail,
       {observe: 'response', headers:headers}).subscribe({
         next:()=>{        alert(['NICE']);},
         error:()=>{        alert('Ошибка!')},
