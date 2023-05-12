@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http'
+import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http'
 import { map, observeOn } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LocalService } from '../Local.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 
+
 export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private storage: LocalService
     ) {}
 
   token: any;
@@ -25,7 +28,7 @@ export class AuthService {
     return this.http.post(
       'https://localhost:44393/Auth/register',
       user,
-      {observe: 'response'}).subscribe({
+      {observe: 'response', headers: headers}).subscribe({
         next:()=>{        this.router.navigate(['/login']);},
         error:()=>{        alert('Ошибка!')},
       });
@@ -42,7 +45,13 @@ export class AuthService {
     return this.http.post(
       'https://localhost:44393/Auth/login',
       user,
-      {headers: headers}).pipe((response:any) => response);
+      {observe: 'response', headers: headers}).subscribe({
+        next:(response: HttpResponse<any>)=>{        
+          this.storage.saveData(response.body.email, response.body.token);
+          this.router.navigate(['/home-page']);
+          },
+        error:(response: HttpResponse<any>)=>{alert(response.body)},
+      });
   }
   
   passwordReset(user: any) {
