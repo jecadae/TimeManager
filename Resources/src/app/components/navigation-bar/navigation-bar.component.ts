@@ -49,7 +49,7 @@ export class NavigationBarComponent implements OnInit{
     let token =this.localStorage.getToken;
     //const headers = new HttpHeaders;
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    headers.append('Content-Type', 'Bearer'+token)
+    headers.append('Authorization', 'Bearer'+token)
     let email = this.localStorage.getEmail();
     return this.http.get<Array<AppPlanDto>>(
       'https://localhost:44393/Plan/GetPlansThisUser/'+email,
