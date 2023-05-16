@@ -47,10 +47,9 @@ export class NavigationBarComponent implements OnInit{
 
   getPlanUser() {
     let token =this.localStorage.getToken;
-    let headers = new HttpHeaders;
-    headers.append('Content-Type', 'application/json');
-    headers.append('accept', 'value')
-    headers.append('Authorization', 'Bearer'+token)
+    const headers = new HttpHeaders;
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    headers.set('Content-Type', 'Bearer'+token)
     let email = this.localStorage.getEmail();
     return this.http.get<Array<AppPlanDto>>(
       'https://localhost:44393/Plan/GetPlansThisUser/'+email,
@@ -62,3 +61,4 @@ export class NavigationBarComponent implements OnInit{
   
   
 }
+
